@@ -140,9 +140,10 @@ class DataConfigService extends Service {
       return;
     }
 
-    // 创建表
-    const create_table_user =
-    `CREATE TABLE ${tableName}
+    if (tableName === 'data_config'){
+      // 创建表
+      const create_table_user =
+          `CREATE TABLE ${tableName}
      (
        "data_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
        "data_key" text NOT NULL,
@@ -150,7 +151,20 @@ class DataConfigService extends Service {
        "data_memo" text,
        "data_desc" text NOT NULL
      );`
-    this.demoSqliteDB.db.exec(create_table_user);
+      this.demoSqliteDB.db.exec(create_table_user);
+    }
+    if (tableName === 'scene_temp'){
+      const create_table_user =
+          `CREATE TABLE ${tableName}
+     (
+       "scene" TEXT NOT NULL,
+       "memo" TEXT,
+       "alldata" text,
+       PRIMARY KEY ("scene")
+     );`
+      this.demoSqliteDB.db.exec(create_table_user);
+    }
+
 
   }
 
@@ -182,6 +196,46 @@ class DataConfigService extends Service {
     const datas = selectData.all({data_key: data_key});
     console.log("select datas:", datas);
     return datas;
+  }
+
+
+  /**
+   * 通过代码值获取字典值
+   * **/
+  async getSceneTemp(scene=''){
+    console.log("select :", {scene});
+
+    let table = 'scene_temp';
+    await this.checkAndCreateTableSqlite(table);
+
+    const selectData= this.demoSqliteDB.db.prepare(`SELECT * FROM ${table} WHERE scene = @scene`);
+    const datas = selectData.all({scene: scene});
+    console.log("select datas:", datas);
+    return datas;
+  }
+
+  /**
+   * 通过代码值获取字典值
+   * **/
+  async addSceneTemp(data){
+    console.log("add data :", data);
+    let table = 'scene_temp';
+    await this.checkAndCreateTableSqlite(table);
+    const insert= this.demoSqliteDB.db.prepare(`INSERT INTO ${table} (scene,memo,alldata) VALUES (@scene,@memo,@alldata)`);
+    insert.run(data);
+    return true;
+  }
+
+  /**
+   * 通过代码值获取字典值
+   * **/
+  async updateSceneTemp(data){
+    console.log("add data :", data);
+    let table = 'scene_temp';
+    await this.checkAndCreateTableSqlite(table);
+    const update= this.demoSqliteDB.db.prepare(`update ${table}  set memo = @memo,alldata =@alldata where scene = @scene`);
+    update.run(data);
+    return true;
   }
 
   /*

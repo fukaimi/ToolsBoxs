@@ -3,23 +3,27 @@
     <div style="text-align: left">
       <a-card title="数据源选择" :bordered="false" size="small">
         <template>
-          <a-form-model layout="inline" :model="formsource" >
+          <a-form-model layout="inline" :model="formsource">
             <a-form-model-item label="源地址">
               <a-select
                 v-model="resourceUrl"
                 show-search
                 placeholder="选择一个调用地址"
                 option-filter-prop="children"
-                style="width: 350px"
+                style="width: 750px"
                 :filter-option="filterOption"
                 @focus="handleFocus"
                 @blur="handleBlur"
                 @change="handleChange"
               >
-                <a-select-option v-for="item in resourceLis" :key="item.data_id" :value="item.data_value" ><a-icon type="close-circle" @click="delData(item.data_id)" />  <a-tag color="#2db7f5">{{ item.data_desc }}</a-tag>{{ item.data_value }}</a-select-option>
+                <a-select-option v-for="item in resourceLis" :key="item.data_id" :value="item.data_value">
+                  <a-icon type="close-circle" @click="delData(item.data_id)"/>
+                  <a-tag color="#2db7f5">{{ item.data_desc }}</a-tag>
+                  {{ item.data_value }}
+                </a-select-option>
               </a-select>
             </a-form-model-item>
-            <a-form-model-item>
+            <a-form-model-item style="float: right">
               <a-button
                 type="primary"
                 html-type="submit"
@@ -41,16 +45,20 @@
         <!--        新增弹窗-->
         <template>
           <div>
-            <a-modal v-model="visible" title="新增访问源" >
+            <a-modal v-model="visible" title="新增访问源">
               <template slot="footer">
                 <a-button key="ok" type="danger" @click="handleOk">
                   保存
                 </a-button>
               </template>
               <template>
-                <a-form-model layout="inline" :model="formInline" >
+                <a-form-model layout="inline" :model="formInline">
                   <a-form-model-item label="源地址">
-                    <a-input v-model="formInline.data_value" default-value="http://" placeholder="输入源地址" style="width: 350px">
+                    <a-input
+                      v-model="formInline.data_value"
+                      default-value="http://"
+                      placeholder="输入源地址"
+                      style="width: 350px">
                     </a-input>
                   </a-form-model-item>
                   <a-form-model-item label="源名称">
@@ -67,7 +75,7 @@
       <!--口令-->
       <template>
         <div>
-          <a-modal v-model="visible2" title="口令输入" >
+          <a-modal v-model="visible2" title="口令输入">
             <template slot="footer">
               <a-button key="back" @click="closeModal">
                 确认
@@ -81,19 +89,32 @@
         </div>
       </template>
 
-      <a-card >
+      <a-card>
 
-        <a-textarea placeholder="" :row="10" :minRows="10" style="height: 200px" @select="testSelect"/>
-        <a-tag color="#f50">即将执行SQL:</a-tag>{{ txt }}
+        <a-textarea
+          v-model="kzt"
+          placeholder=""
+          :row="10"
+          :minRows="10"
+          style="height: 200px"
+          @change="kztChange"
+          @select="testSelect"/>
+        <a-tag color="#f50">即将执行SQL:</a-tag>
+        {{ txt }}
       </a-card>
-      <a-card >
+      <a-card>
         <template slot="title">
-          <h3>结果集 <a-button key="export" type="primary" @click="exportExcel">导出当前结果集</a-button></h3>
+          <h3>结果集
+            <a-button key="export" type="primary" @click="exportExcel">导出当前结果集</a-button>
+          </h3>
 
         </template>
         <template>
 
-          <a-table :columns="columns" :data-source="data" :scroll="{ x: 1300 }" bordered>
+          <a-table :columns="columns" :data-source="data" :scroll="{ x: 1500, y: 300 }" bordered>
+            <p slot="expandedRowRender" slot-scope="record" style="margin: 0">
+              {{ record.description }}
+            </p>
           </a-table>
         </template>
       </a-card>
@@ -105,17 +126,18 @@
 import {ipcApiRoute} from "@/api/main"
 import exportExcel from '@/utils/exportExcel'
 import ExportExcel from "@/utils/exportExcel";
+
 const columns = [
-  { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
-  { title: 'Age', width: 100, dataIndex: 'age', key: 'age', fixed: 'left' },
-  { title: 'Column 1', dataIndex: 'address', key: '1' },
-  { title: 'Column 2', dataIndex: 'address', key: '2' },
-  { title: 'Column 3', dataIndex: 'address', key: '3' },
-  { title: 'Column 4', dataIndex: 'address', key: '4' },
-  { title: 'Column 5', dataIndex: 'address', key: '5' },
-  { title: 'Column 6', dataIndex: 'address', key: '6' },
-  { title: 'Column 7', dataIndex: 'address', key: '7' },
-  { title: 'Column 8', dataIndex: 'address', key: '8' },
+  {title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left'},
+  {title: 'Age', width: 100, dataIndex: 'age', key: 'age', fixed: 'left'},
+  {title: 'Column 1', dataIndex: 'address', key: '1'},
+  {title: 'Column 2', dataIndex: 'address', key: '2'},
+  {title: 'Column 3', dataIndex: 'address', key: '3'},
+  {title: 'Column 4', dataIndex: 'address', key: '4'},
+  {title: 'Column 5', dataIndex: 'address', key: '5'},
+  {title: 'Column 6', dataIndex: 'address', key: '6'},
+  {title: 'Column 7', dataIndex: 'address', key: '7'},
+  {title: 'Column 8', dataIndex: 'address', key: '8'},
 ];
 
 const data = [
@@ -130,13 +152,15 @@ const data = [
 export default {
   data() {
     return {
-      formsource:{},
+      formsource: {},
       visible2: false,
-      token:'',
+      token: '',
       data,
       columns,
-      txt:'',
-      resourceLis:[],
+      kzt: '',
+      txt: '',
+      isUpdate: false,
+      resourceLis: [],
       resourceUrl: '',
       visible: false,
       formInline: {
@@ -146,10 +170,11 @@ export default {
     };
   },
   created() {
-      this.initData()
+    this.initData()
+    this.initScene()
   },
   methods: {
-    initData(){
+    initData() {
       const self = this;
       const params = {
         action: 'getDataConfigByKey',
@@ -166,10 +191,65 @@ export default {
         self.$message.success(`完成`);
       })
     },
-    exportExcel(){
-      ExportExcel(this.columns,this.data,'数据集');
+    initScene() {//场景初始化
+      const self = this;
+      const params = {
+        action: 'getSceneTemp',
+        info: {
+          scene: 'mysqlTool'
+        }
+      }
+      this.$ipcInvoke(ipcApiRoute.dataConfigOperation, params).then(res => {
+        if (res.result.length === 0) {
+          this.isUpdate = false
+          return;
+        }
+        let ressource = eval('('+res.result[0].alldata+')')
+        this.resourceUrl = ressource.resourceUrl
+        this.kzt = ressource.kzt
+        this.isUpdate = true
+        self.$message.success(`完成`);
+      })
     },
-    delData(data_id){
+    kztChange(e) {
+      debugger
+      const kzt = this.kzt
+      const resourceUrl = this.resourceUrl
+      let info = {
+        scene: "mysqlTool",
+        memo: 'mysql终端',
+        alldata: JSON.stringify({kzt: kzt, resourceUrl: resourceUrl})
+      }
+      if (this.isUpdate) {//更新
+        const params = {
+          action: 'updateSceneTemp',
+          info: info
+        }
+        this.$ipcInvoke(ipcApiRoute.dataConfigOperation, params).then(res => {
+          if (res.result) {
+            this.isUpdate = true
+            return;
+          }
+        })
+      } else {//新增
+        const params = {
+          action: 'addSceneTemp',
+          info: info
+        }
+        this.$ipcInvoke(ipcApiRoute.dataConfigOperation, params).then(res => {
+          if (res.result) {
+            this.isUpdate = true
+            return;
+          }
+
+        })
+      }
+
+    },
+    exportExcel() {
+      ExportExcel(this.columns, this.data, Date.parse(new Date()) + '.xlsx');
+    },
+    delData(data_id) {
       const self = this;
       const params = {
         action: 'delDataConfig',
@@ -187,17 +267,18 @@ export default {
         self.$message.success(`删除失败`);
       })
     },
-    testSelect(e){
-      let start=e.target.selectionStart;
-      let end=e.target.selectionEnd;
-      let value= e.target.value;                   console.log(e.target.selectionStart,e.target.selectionEnd,e.target.value);
+    testSelect(e) {
+      let start = e.target.selectionStart;
+      let end = e.target.selectionEnd;
+      let value = e.target.value;
+      console.log(e.target.selectionStart, e.target.selectionEnd, e.target.value);
 
-      let selectVal="";
-      if(value&&end!=0){ //防止 没选中
-        selectVal=value.slice(start,end);
+      let selectVal = "";
+      if (value && end != 0) { //防止 没选中
+        selectVal = value.slice(start, end);
       }
       console.log(selectVal)
-      this.txt=selectVal;
+      this.txt = selectVal;
     },
     showModal() {
       this.formInline = {
@@ -206,7 +287,7 @@ export default {
       }
       this.visible = true;
     },
-    closeModal(){
+    closeModal() {
       this.visible2 = false;
       this.visible = false;
     },
@@ -220,7 +301,7 @@ export default {
     },
     handleSubmit(e) {
       console.log(this.formInline);
-      if (!this.formInline.data_desc){
+      if (!this.formInline.data_desc) {
         return
       }
       const self = this;
@@ -241,7 +322,7 @@ export default {
         self.$message.success(`新增失败`);
       })
     },
-    post(){
+    post() {
       const self = this;
       const params = {
         action: 'POST',
@@ -255,19 +336,28 @@ export default {
         if (res.result.code === 0) {
           self.$message.success(`执行成功`);
           this.columns = []
+          const columnall =[]
           let data1 = res.result.data;
           let data1Element = {}
-          if (data1){
+          if (data1) {
             data1Element = data1[0];
-            for(let key of Object.keys(data1Element )){
+            for (let key of Object.keys(data1Element)) {
               console.log(key);
               let column = {
                 title: key,
-                dataIndex:key
+                dataIndex: key,
+                ellipsis: true
               }
               this.columns.push(column)
             }
-            this.data = data1
+            this.columns.push({title: 'description',dataIndex:'description',ellipsis: true})
+
+            const  finalData = []
+            for (let i = 0; i< data1.length; i ++) {
+              data1[i].description = JSON.stringify(data1[i])
+              finalData.push(data1[i])
+            }
+            this.data = finalData
           }
           return;
         }

@@ -88,6 +88,15 @@ class DataConfigController extends Controller {
             case 'setDataDir' :
                 data.result = await service.favoriteurl.setCustomDataDir(paramsObj.data_dir);
                 break;
+            case 'addSceneTemp':
+                data.result = await service.dataConfig.addSceneTemp(paramsObj.info)
+                break;
+            case 'updateSceneTemp':
+                data.result = await service.dataConfig.updateSceneTemp(paramsObj.info)
+                break;
+            case 'getSceneTemp':
+                data.result = await service.dataConfig.getSceneTemp(paramsObj.info.scene)
+                break;
         }
         console.log('data 出参:', data);
         return data;
