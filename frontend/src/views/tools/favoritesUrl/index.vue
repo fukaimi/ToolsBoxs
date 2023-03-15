@@ -296,6 +296,7 @@ export default {
           this.urlList = res.result
           return;
         }
+        this.urlList = []
       })
     },
     confirm() {

@@ -13,6 +13,11 @@ export default {
 			title:'mySql终端',
 			pageName:'MySqlTool',
 			params:{}
+		},'menu_003':{
+			icon:'code',
+			title:'文本工具',
+			pageName:'TextTool',
+			params:{}
 		}
 	},
 	base: {

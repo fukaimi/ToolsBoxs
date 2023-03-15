@@ -30,6 +30,11 @@ export const constantRouterMap = [
             path: '/tools/mysql/index',
             name:'MySqlTool',
             component:() => import('@/views/tools/mysql/index')
+          },
+          {
+            path: '/tools/textTool/index',
+            name:'TextTool',
+            component:() => import('@/views/tools/textTool/index')
           }
         ]
 

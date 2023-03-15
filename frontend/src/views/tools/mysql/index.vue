@@ -212,7 +212,6 @@ export default {
       })
     },
     kztChange(e) {
-      debugger
       const kzt = this.kzt
       const resourceUrl = this.resourceUrl
       let info = {

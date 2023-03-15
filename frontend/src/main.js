@@ -6,6 +6,10 @@ import router from './router'
 import { VueAxios } from './utils/request'
 import IpcRenderer from '@/utils/ipcRenderer'
 import baseUtil from '@/utils/baseUtil'
+import CodeEditor from 'bin-code-editor';
+//json代码框
+Vue.use(CodeEditor);
+
 
 // 使用antd
 Vue.use(antd)
