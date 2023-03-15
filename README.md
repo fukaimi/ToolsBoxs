@@ -1,6 +1,10 @@
 # 该项目来源于 electron-egg framework 2.0
 ## 🌏[中文](https://www.yuque.com/u34495/mivcfg) | [English](https://www.yuque.com/u34495/ee-doc) 
 
+### 2023年3月15日14:08:07
+- 修复一个收藏夹没有网址时候不刷新的问题;
+- 新增文本工具箱JSON工具
+
 ### 2023年3月14日18:11:32
 - 优化mysql工具table展示布局;
 - 增加历史SQL缓存
