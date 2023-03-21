@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import VueClipBoard from 'vue-clipboard2'
+Vue.use(VueClipBoard)
 const  uuid = () =>{
         var s = [];
         var hexDigits = "0123456789abcdef";
@@ -22,7 +24,6 @@ const imgUrlToBase64 = (url) => {
             reject('请传入url内容');
             return null
         }
-        debugger
         if (/\.(png|jpe?g|gif|svg|ico)(\?.*)?$/.test(url)) {
             // 图片地址
             const image = new Image();
@@ -41,9 +42,7 @@ const imgUrlToBase64 = (url) => {
                 // 转base64
                 const dataUrl = canvas.toDataURL(`image/${ext}`);
                 resolve(dataUrl || '');
-                debugger
             }
-            debugger
         } else {
             // 非图片地址
             reject('非(png/jpe?g/gif/svg等)图片地址');
@@ -78,12 +77,26 @@ const readImgToBase64 = (file) => {
             reject(error);
         }
     });
-}
+};
+
+const copy = (text) =>{
+    this.$copyText(text).then(
+        e=>{
+            console.log('已复制至剪切板：', e);
+            this.$message.success("已复制至剪切板")
+        },
+        e=>{
+            console.log('复制失败：', e);
+            this.$message.error("复制失败")
+        }
+    )
+};
 
 export default function(Vue) {
     //添加全局API
     Vue.prototype.$baseUtil = {
         uuid,
-        imgUrlToBase64
+        imgUrlToBase64,
+        copy
     }
 }

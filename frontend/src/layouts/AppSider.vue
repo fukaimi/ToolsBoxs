@@ -37,6 +37,12 @@ export default {
           pageName: 'Tools',
           params: {},
         },
+        'music' : {
+          icon: 'home',
+          title: '音乐',
+          pageName: 'Music',
+          params: {},
+        },
         'menu_1' : {
           icon: 'home',
           title: '其他',

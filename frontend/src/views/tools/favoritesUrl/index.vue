@@ -50,6 +50,9 @@
                 <a-button type="link" @click="delUrlItem(item.item_id)">
                   删除
                 </a-button>
+                <a-tag color="#2db7f5" @click="onCopy(item.item_url)">
+                  复制到剪切板
+                </a-tag>
                 <a-tag color="#2db7f5" @click="createWindow(item.item_url)">
                   访问
                 </a-tag>
@@ -128,6 +131,10 @@
 <script>
 import {ipcApiRoute} from "@/api/main";
 import reqwest from 'reqwest';
+import VueClipBoard from 'vue-clipboard2'
+import Vue from 'vue'
+Vue.use(VueClipBoard)
+
 
 
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
@@ -170,12 +177,25 @@ export default {
     this.init()
   },
   mounted() {
+
     this.getData(res => {
       this.loading = false;
       this.data = res.results;
     });
   },
   methods: {
+    onCopy(txt){
+      this.$copyText(txt).then(
+          e=>{
+            console.log('已复制至剪切板：', e);
+            this.$message.success("已复制至剪切板")
+          },
+          e=>{
+            console.log('复制失败：', e);
+            this.$message.error("复制失败")
+          }
+      )
+    },
     delUrlItem(item) {
       const params = {
         action: 'delUrlItem',

@@ -18,6 +18,11 @@ export default {
 			title:'文本工具',
 			pageName:'TextTool',
 			params:{}
+		},'menu_004':{
+			icon:'code',
+			title:'数据模拟',
+			pageName:'RandomDataTool',
+			params:{}
 		}
 	},
 	base: {

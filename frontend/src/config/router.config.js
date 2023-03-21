@@ -2,7 +2,7 @@
  * 基础路由
  * @type { *[] }
  */
-import {AppSider, Menu} from '@/layouts'
+import {AppSider, Menu,Music} from '@/layouts'
 
 const RouteView = {
   name: 'RouteView',
@@ -35,9 +35,27 @@ export const constantRouterMap = [
             path: '/tools/textTool/index',
             name:'TextTool',
             component:() => import('@/views/tools/textTool/index')
+          },
+          {
+            path: '/tools/randDataTool/index',
+            name:'RandomDataTool',
+            component:() => import('@/views/tools/randDataTool/index')
           }
         ]
-
+      },
+      {
+        path: '/music',
+        name: 'music',
+        components: Music,
+        props:{id: 'music'},
+        redirect: { name: 'Music' },
+        children:[
+          {
+            path: '/music/general/index',
+            name: 'Music',
+            component:() => import('@/views/music/general/index1')
+          }
+        ]
       },
       {
         path: '/base',

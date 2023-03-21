@@ -38,7 +38,6 @@ function ExportExcel(column, dataSource, fileName = 'example') {
         });
         dataSourceArr.push(dataTemp);
     });
-    // debugger;
     // 绘画表格数据
     dataSourceArr.forEach((item, index) => {
         //根据数据,创建对应个数的行
