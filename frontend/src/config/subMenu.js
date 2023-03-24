@@ -14,14 +14,19 @@ export default {
 			pageName:'MySqlTool',
 			params:{}
 		},'menu_003':{
-			icon:'code',
+			icon:'profile',
 			title:'文本工具',
 			pageName:'TextTool',
 			params:{}
 		},'menu_004':{
-			icon:'code',
+			icon:'robot',
 			title:'数据模拟',
 			pageName:'RandomDataTool',
+			params:{}
+		},'menu_005':{
+			icon:'laptop',
+			title:'Hsa Seed代码生成',
+			pageName: 'Ta404ToHsaSeed',
 			params:{}
 		}
 	},

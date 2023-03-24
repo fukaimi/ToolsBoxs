@@ -1,6 +1,6 @@
 {
   "name": "Tools",
-  "version": "2.5.5",
+  "version": "2.5.6",
   "description": "fukm's Tools",
   "main": "main.js",
   "scripts": {
@@ -40,7 +40,8 @@
       "!frontend/",
       "!run/",
       "!logs/",
-      "!data/"
+      "!data/",
+      "!electron/"
     ],
     "extraResources": {
       "from": "./build/extraResources/",

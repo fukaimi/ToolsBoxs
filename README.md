@@ -1,6 +1,9 @@
 # 该项目来源于 electron-egg framework 2.0
 ## 🌏[中文](https://www.yuque.com/u34495/mivcfg) | [English](https://www.yuque.com/u34495/ee-doc) 
 
+### 2023年3月24日09:53:44
+- 新增Hsa Seed框架前端代码生成器
+
 ### 2023年3月21日14:14:12
 - 新增功能:数据模拟(身份证/电话号码/身份证/统一社会信用代码/姓名)
 

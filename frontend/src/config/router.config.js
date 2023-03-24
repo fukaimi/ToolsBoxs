@@ -40,6 +40,11 @@ export const constantRouterMap = [
             path: '/tools/randDataTool/index',
             name:'RandomDataTool',
             component:() => import('@/views/tools/randDataTool/index')
+          },
+          {
+            path: '/tools/uichange/ta404ToHsa/index',
+            name:'Ta404ToHsaSeed',
+            component:() => import('@/views/tools/uichange/ta404ToHsa/index')
           }
         ]
       },

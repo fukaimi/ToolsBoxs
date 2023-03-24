@@ -2,9 +2,9 @@
   <div id="app-demo-window">
     <div class="one-block-1">
       <span>
-        1. 自动更新
+        1. 自动更新(需要检查网络是否支持访问GitHub)
       </span>
-    </div>  
+    </div>
     <div class="one-block-2">
       <a-space>
         <a-button @click="checkForUpdater()">检查更新</a-button>
@@ -15,13 +15,14 @@
       <span>
         2. 下载进度
       </span>
-    </div>  
+    </div>
     <div class="one-block-2">
       <a-progress :percent="percentNumber" status="active" />
       <a-space>
         {{ progress }}
       </a-space>
     </div>
+
   </div>
 </template>
 <script>

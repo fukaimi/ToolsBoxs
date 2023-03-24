@@ -5,9 +5,9 @@
       class="layout-sider"
     >
       <a-menu theme="light" mode="inline" :default-selected-keys="[default_key]" :selected-keys="[current]" @click="menuClick">
-        <a-menu-item v-for="(menuInfo, subIndex) in menu" :key="subIndex">
+        <a-menu-item v-for="(menuInfo, subIndex) in menu" :key="subIndex" >
           <router-link :to="{ name: menuInfo.pageName, params: menuInfo.params}">
-            <span>{{ menuInfo.title }}</span>
+            <span style="float: left"><a-icon :type="menuInfo.icon" />{{ menuInfo.title }}</span>
           </router-link>
         </a-menu-item>
       </a-menu>
