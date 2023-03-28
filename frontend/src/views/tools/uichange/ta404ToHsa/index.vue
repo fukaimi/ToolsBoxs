@@ -2,12 +2,36 @@
   <div>
     <a-row style="padding-top:1rem;text-align: left;">
       <a-col :xs="4" :sm="8" :md="10" :lg="4" :xl="2">
-        <div >
-          <a-button type="primary" block @click="showModal">
+        <div style="padding-left: 1rem">
+          <a-button type="primary" block class="but" @click="showModaCom(5)">
+            获取VUE模板
+          </a-button>
+          <a-button type="primary" block class="but" @click="showModal">
             新建表单
           </a-button>
-          <a-button type="primary" block style="margin-top: 1em" @click="onCopy">
+          <a-button type="primary" block class="but" @click="showModaCom(1)">
+            新建Card
+          </a-button>
+          <a-button type="primary" block class="but" @click="showModaCom(2)">
+            新建下拉框
+          </a-button>
+          <a-button type="primary" block class="but" @click="showModaCom(3)">
+            新建输入框
+          </a-button>
+          <a-button type="primary" block class="but" @click="showModaCom(4)">
+            新建日期框
+          </a-button>
+          <a-button type="primary" block class="but" @click="showModaCom(6)">
+            新建表格
+          </a-button>
+          <a-button type="primary" block @click="showModaCom(7)">
+            生成表格列
+          </a-button>
+          <a-button type="danger" block class="but" @click="onCopy">
             复制内容
+          </a-button>
+          <a-button type="danger" block class="but" @click="reSet">
+            清空内容
           </a-button>
         </div>
       </a-col>
@@ -142,12 +166,27 @@
         确认
       </a-button>
     </a-drawer>
+
+    <card ref="card" @setStr="setStr"></card>
+    <selectdiy ref="selectdiy" @setStr="setStr"></selectdiy>
+    <inputdiy ref="inputdiy" @setStr="setStr"></inputdiy>
+    <datecom ref="datecom" @setStr="setStr"></datecom>
+    <vuetemplate ref="vuetemplate" @setStr="setStr"></vuetemplate>
+    <tablecom ref="tablecom" @setStr="setStr" ></tablecom>
   </div>
 </template>
 
 <script>
+import card from "@/views/tools/uichange/ta404ToHsa/component/card";
+import selectdiy from "@/views/tools/uichange/ta404ToHsa/component/select";
+import inputdiy from "@/views/tools/uichange/ta404ToHsa/component/input";
+import datecom from "@/views/tools/uichange/ta404ToHsa/component/datecom";
+import vuetemplate from "@/views/tools/uichange/ta404ToHsa/component/vuetemplate";
+import tablecom from "@/views/tools/uichange/ta404ToHsa/component/tablecom";
+
 export default {
   name: "Index",
+  components:{card,selectdiy,inputdiy,datecom,vuetemplate,tablecom},
   data() {
     return {
       pid: 0,
@@ -186,6 +225,12 @@ export default {
     }
   },
   methods: {
+    setStr(str){
+      this.jsonStr2 = str
+    },
+    reSet(){
+      this.jsonStr2 = ''
+    },
     taToHsa() {
       let jsonStr = this.jsonStr;
       alert(jsonStr.split("\n")[2]);
@@ -197,6 +242,30 @@ export default {
     },
     showModal() {
       this.visible = true;
+    },
+    showModaCom(i){
+      if (i === 1){
+        this.$refs.card.showModal()
+      }
+      if (i===2){
+        this.$refs.selectdiy.showModal()
+      }
+      if (i===3){
+        this.$refs.inputdiy.showModal()
+      }
+      if (i===4){
+        this.$refs.datecom.showModal()
+      }
+      if (i===5){
+        this.$refs.vuetemplate.getVueTemplate()
+      }
+      if (i===6){
+        this.$refs.vuetemplate.getTable()
+      }
+      if (i===7){
+        this.$refs.tablecom.showModal()
+      }
+
     },
     onClose() {
       this.visible2 = false
@@ -213,7 +282,7 @@ export default {
       let j = 0;
       for (let i = 0; i < this.addItemAbs.length; i++) {
         str += this.addItemAbs[i].allstr
-        if (j !== 0 && this.addItemAbs[i].pid > j + 1) {
+        if (j !== 0 && this.addItemAbs[i].pid === (j + 1)) {
           str += '          </hsa-title-pane-item>\n' +
               '        </hsa-title-pane>\n'
           j === 0
@@ -396,9 +465,12 @@ export default {
 <style scoped>
 /deep/ .CodeMirror {
   font-family: monospace;
-  height: 60em;
+  height: 50em;
   color: black;
   direction: ltr;
-  width: 40rem;
+  width: 50rem;
+}
+.but{
+  margin-top: 1rem
 }
 </style>

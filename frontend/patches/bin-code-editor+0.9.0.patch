@@ -1,0 +1,13 @@
+diff --git a/node_modules/bin-code-editor/src/components/code-editor/code-editor.vue b/node_modules/bin-code-editor/src/components/code-editor/code-editor.vue
+index d881eee..e74a4f7 100644
+--- a/node_modules/bin-code-editor/src/components/code-editor/code-editor.vue
++++ b/node_modules/bin-code-editor/src/components/code-editor/code-editor.vue
+@@ -137,6 +137,8 @@
+       this.jsonEditor.on('change', cm => {
+         this.$emit('on-change', cm.getValue())
+         this.$emit('input', cm.getValue())
++        this.$emit('onChange', cm.getValue())
++        console.log(cm)
+       })
+       this.jsonEditor.on('blur', this.handleBlur)
+       this.$emit('on-init', this.jsonEditor)
