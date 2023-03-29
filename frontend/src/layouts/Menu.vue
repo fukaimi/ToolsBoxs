@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       menu:{},
-      default_key: 'menu_100',
+      default_key: 'menu_001',
       current: '',
       keys: []
     };
@@ -51,6 +51,9 @@ export default {
     menuHandle () {
       this.current = this.default_key;
       switch (this.id) {
+        case 'apis':
+          this.menu = subMenu.apis;
+          break;
         case 'tools':
           this.menu = subMenu.tools;
           break;

@@ -2,6 +2,14 @@
  * 子菜单
  */
 export default {
+	apis:{
+		'menu_300':{
+			icon:'robot',
+			title:'ChatGPT',
+			pageName:'ChatGPT',
+			params:{}
+		}
+	},
 	tools:{
 		'menu_001':{
 			icon:'global',
@@ -15,7 +23,7 @@ export default {
 			params:{}
 		},'menu_003':{
 			icon:'profile',
-			title:'文本工具',
+			title:'字符串工具',
 			pageName:'TextTool',
 			params:{}
 		},'menu_004':{
@@ -27,6 +35,11 @@ export default {
 			icon:'laptop',
 			title:'Hsa Seed代码生成',
 			pageName: 'Ta404ToHsaSeed',
+			params:{}
+		},'menu_006':{
+			icon:'file-text',
+			title:'文本编辑',
+			pageName: 'TxtTool',
 			params:{}
 		}
 	},

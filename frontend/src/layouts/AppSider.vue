@@ -31,6 +31,12 @@ export default {
       default_key: 'menu_0',
       current: '',
       menu: {
+        'menu_00' : {
+          icon: 'youtube',
+          title: '生活',
+          pageName: 'Apis',
+          params: {},
+        },
         'menu_0' : {
           icon: 'bug',
           title: '工具',
