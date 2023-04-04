@@ -116,6 +116,12 @@ export default {
 		// 	pageName: 'BaseThemeIndex',
 		// 	params: {}
 		// },
+		'menu_411' : {
+			icon: 'profile',
+			title: '软件自启',
+			pageName: 'BaseSystemIndex',
+			params: {}
+		},
 		'menu_412' : {
 			icon: 'profile',
 			title: '自动更新',

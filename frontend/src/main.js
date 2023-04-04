@@ -7,6 +7,9 @@ import { VueAxios } from './utils/request'
 import IpcRenderer from '@/utils/ipcRenderer'
 import baseUtil from '@/utils/baseUtil'
 import CodeEditor from 'bin-code-editor';
+// markdown样式
+import "github-markdown-css";
+
 //json代码框
 Vue.use(CodeEditor);
 

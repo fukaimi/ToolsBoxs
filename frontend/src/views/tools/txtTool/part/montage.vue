@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <a-row>
-      <a-col :span="10" style="height: 80%;border: 1px solid red;float: left">
+      <a-col :span="10" style="height: 80%;float: left">
         <template>
           <a-form-model
             ref="ruleForm"
@@ -23,7 +23,7 @@
                 v-model="form.txt"
                 placeholder="格式说明: 按照$数量将参数依次用 空格 隔开,例如:张三 男 汉族"
                 allow-clear
-                :rows="15"
+                :rows="12"
               />
             </a-form-model-item>
 
@@ -31,8 +31,11 @@
               <a-button type="primary" @click="onSubmit">
                 生成
               </a-button>
+              <a-button style="margin-left: 10px;" type="primary" @click="onCopy">
+                复制结果 F2
+              </a-button>
               <a-button style="margin-left: 10px;" @click="resetForm">
-                重置
+                重置 F3
               </a-button>
             </a-form-model-item>
           </a-form-model>
@@ -44,9 +47,9 @@
           v-model="jsonStr2"
           :auto-format="true"
           :smart-indent="true"
-          theme="idea"
+          theme="dracula"
           :indent-unit="4"
-          :line-wrap="false"
+          :line-wrap="true"
           :lint="false">
         </b-code-editor>
       </a-col>
@@ -55,9 +58,12 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
+      nums: 0,
+      keys: '',
       jsonStr2: '',
       labelCol: {span: 4},
       wrapperCol: {span: 14},
@@ -78,16 +84,40 @@ export default {
       },
     };
   },
+  created() {
+  },
+  mounted() {
+    const that = this;
+    //document.addEventListener('keydown', that.handleWatchEnter);
+    document.addEventListener('keydown', that.handleWatchEnter)
+    document.addEventListener('keyup',this.closeWatch)
+
+  },
   methods: {
+    closeWatch() {
+      let keys1 = this.keys;
+      if (keys1 === 113) {
+        this.onCopy()
+      }
+      if(keys1 === 114){
+        this.resetForm
+      }
+    },
+    handleWatchPress(e) {
+      this.keys = window.event ? e.keyCode : e.which;
+      console.log('++++++++++++++++++' + this.keys);
+    },
+    handleWatchEnter(e) {
+      let key = window.event ? e.keyCode : e.which;
+      this.keys = key
+    },
     onSubmit() {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
-          debugger
           let form = this.form
           let txtTemplate = form.txtTemplate
           let txt = form.txt
           const splitTemplate = txtTemplate.split('$')
-          debugger
           let code = txt.split(/[(\r\n)\r\n]+/); // 根据换行或者回车进行识别
           code.forEach((item, index) => { // 删除空项
             if (!item) {
@@ -112,19 +142,19 @@ export default {
                 str += '\n'
               }
             }
-          }else{
+          } else {
             for (let i = 0; i < code.length; i++) {
               if (code[i]) {
                 const splitTxt = code[i].split(/[(\s)\s]+/)//按照空格拆分
                 for (let j = 0; j < splitTemplate.length; j++) {
-                  if(splitTxt[j]){
+                  if (splitTxt[j]) {
                     str += splitTemplate[j] + splitTxt[j]
-                  }else{
+                  } else {
                     str += splitTemplate[j]
                   }
 
                 }
-                  str += '\n'
+                str += '\n'
               }
             }
           }
@@ -140,6 +170,21 @@ export default {
       this.$refs.ruleForm.resetFields();
       this.jsonStr2 = ''
     },
+    onCopy() {
+      if (this.jsonStr2) {
+        this.$copyText(this.jsonStr2).then(
+            e => {
+              console.log('复制成功：', e);
+              this.$message.success("已复制到剪切板")
+            },
+            e => {
+              console.log('复制失败：', e);
+              this.$message.error("复制失败")
+            }
+        )
+      }
+
+    },
   },
 };
 </script>
@@ -148,11 +193,18 @@ export default {
 /deep/ html, body, #app {
   height: 100%;
 }
+
 /deep/ .CodeMirror {
   font-family: monospace;
   height: 50em;
   color: black;
   direction: ltr;
 
+}
+
+/deep/ textarea {
+  border: none !important;
+  resize: none;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 </style>

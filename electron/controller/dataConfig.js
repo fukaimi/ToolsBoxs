@@ -76,6 +76,9 @@ class DataConfigController extends Controller {
             case 'POST':
                 data.result = await service.dataConfig.post(paramsObj.data)
                 break;
+            case 'GET':
+                data.result = await service.dataConfig.get(paramsObj.data)
+                break;
             case 'update' :
                 data.result = await service.storage.updateDataSqlite(paramsObj.update_name, paramsObj.update_age);
                 break;

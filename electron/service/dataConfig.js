@@ -292,6 +292,34 @@ class DataConfigService extends Service {
     }
   }
 
+
+
+  /**
+   * 发起一个网络请求
+   */
+  async get(param) {
+    console.log("GET发起请求:" + param)
+    try {
+      const headersObj = {
+        'Content-Type': 'application/json',
+        'Authorization': param.token // 请修改这个token，用你自己的账号token
+      };
+      const url = param.url;
+      const response = await this.app.curl(url, {
+        method: 'GET',
+        headers: headersObj,
+        data: param,
+        dataType: 'json',
+        timeout: 100000,
+      });
+      const result = response.data;
+      console.log("GET请求应答:" + JSON.stringify(result))
+      return result
+    }catch (e) {
+      return e
+    }
+  }
+
   /*
    * all Test data (sqlite)
    */
