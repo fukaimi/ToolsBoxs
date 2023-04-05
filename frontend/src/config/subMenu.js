@@ -41,6 +41,11 @@ export default {
 			title:'文本编辑',
 			pageName: 'TxtTool',
 			params:{}
+		},'menu_007':{
+			icon:'disconnect',
+			title:'在线翻译',
+			pageName:'Translation',
+			params:{}
 		}
 	},
 	base: {

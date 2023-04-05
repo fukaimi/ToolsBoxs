@@ -63,6 +63,10 @@ export const constantRouterMap = [
                         path: '/tools/txtTool/index',
                         name: 'TxtTool',
                         component: () => import('@/views/tools/txtTool/index')
+                    }, {
+                        path: '/tools/translation/index',
+                        name: 'Translation',
+                        component: () => import('@/views/tools/translation/index')
                     }
                 ]
             },
