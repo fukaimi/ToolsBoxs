@@ -12,10 +12,13 @@
           <a-button type="primary" block class="but" @click="showModaCom(1)">
             新建Card
           </a-button>
+          <a-button type="primary" block class="but" @click="showModaCom(1)">
+            新建Card
+          </a-button>
           <a-button type="primary" block class="but" @click="showModaCom(2)">
             新建下拉框
           </a-button>
-          <a-button type="primary" block class="but" @click="showModaCom(3)">
+          <a-button type="primary" :mark="mark" block class="but" @click="showModaCom(3)">
             新建输入框
           </a-button>
           <a-button type="primary" block class="but" @click="showModaCom(4)">
@@ -35,7 +38,15 @@
           </a-button>
         </div>
       </a-col>
+
       <a-col :xs="4" :sm="8" :md="10" :lg="4" :xl="22">
+        <a-space :span="24" style="margin-left: 5rem">
+          <a-tag color="#2db7f5">
+            列数 {{ mark }}
+          </a-tag> <a-slider v-model="mark" :marks="marks" :default-value="mark" :max="4" style="width: 35rem"/>
+        </a-space>
+
+
         <b-code-editor
           ref="editor"
           v-model="jsonStr2"
@@ -168,9 +179,9 @@
     </a-drawer>
 
     <card ref="card" @setStr="setStr"></card>
-    <selectdiy ref="selectdiy" @setStr="setStr"></selectdiy>
-    <inputdiy ref="inputdiy" @setStr="setStr"></inputdiy>
-    <datecom ref="datecom" @setStr="setStr"></datecom>
+    <selectdiy ref="selectdiy" :mark="mark" @setStr="setStr"></selectdiy>
+    <inputdiy ref="inputdiy" :mark="mark" @setStr="setStr"></inputdiy>
+    <datecom ref="datecom" :mark="mark" @setStr="setStr"></datecom>
     <vuetemplate ref="vuetemplate" @setStr="setStr"></vuetemplate>
     <tablecom ref="tablecom" @setStr="setStr" ></tablecom>
   </div>
@@ -189,13 +200,27 @@ export default {
   components:{card,selectdiy,inputdiy,datecom,vuetemplate,tablecom},
   data() {
     return {
+      mark:0,
+      marks: {
+        0: '无',
+        1: '1列',
+        2: '2列',
+        3: '3列',
+        4: {
+          style: {
+            color: '#f50',
+          },
+          label: <strong>4列</strong>,
+        },
+      },
       pid: 0,
       forms: [],
       from: {
         fromstart: '      <el-form\n' +
             '        label-position="right"\n' +
             '        label-width="100px"\n' +
-            '        @submit.native.prevent\n',
+            '        @submit.native.prevent\n' +
+            '        size="medium"\n',
         fromend: '\n</el-form>',
         ref: '',
         model: '',

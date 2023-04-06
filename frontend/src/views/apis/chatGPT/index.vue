@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <template>
-      <a-alert message="正在与ChatGPT对话..." type="info" close-text="关闭提示" banner/>
+      <a-alert message="正在与ChatGPT对话...(推荐使用免费的ChatGPT镜像站)" type="info" close-text="关闭提示" banner/>
     </template>
     <span v-show="show" style="margin: 0 auto;position: absolute;z-index: 222" > <a-statistic-countdown
       title="AI思考中"

@@ -1,5 +1,8 @@
 # 该项目来源于 electron-egg framework 2.0
 ## 🌏[中文](https://www.yuque.com/u34495/mivcfg) | [English](https://www.yuque.com/u34495/ee-doc) 
+### 2023年4月5日10:50:32
+- 新增翻译
+- 增加ChatGPT模块
 
 ### 2023年3月24日09:53:44
 - 新增Hsa Seed框架前端代码生成器

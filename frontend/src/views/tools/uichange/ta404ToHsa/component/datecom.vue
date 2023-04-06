@@ -89,6 +89,12 @@ const formItemLayout = {
 };
 
 export default {
+  props:{
+    mark:{
+      type:Number,
+      default: 0
+    }
+  },
   data() {
     return {
       form: this.$form.createForm(this, {name:'selectname'}),
@@ -132,6 +138,12 @@ export default {
                   '                >\n'+
             '                </<el-date-picker>\n' +
                 '              </el-form-item>\n'
+            if (this.mark !== 0){
+              let li = 24 / this.mark
+              // let sli = 24 - li
+              str = '<hsa-col :sm="24" :md="12" :lg="' + li + '">\n' + str
+              str += '</hsa-col>\n'
+            }
             this.$emit('setStr',str)
           }, 2000);
         }

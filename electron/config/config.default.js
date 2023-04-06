@@ -45,11 +45,14 @@ module.exports = (appInfo) => {
    * 主窗口
    */
   config.windowsOption = {
+    fullscreen: false,//是否全屏
+    fullscreenable: true,//是否可进入全屏
+    thickFrame: true,
     title: '工具箱',
-    width: 1200,
-    height: 720,
-    minWidth: 800,
-    minHeight: 650,
+    width: 1366,
+    height: 768,
+    minWidth: 1366,
+    minHeight: 768,
     webPreferences: {
       //webSecurity: false, // 跨域问题 -> 打开注释
       contextIsolation: false, // false -> 可在渲染进程中使用electron的api，true->需要bridge.js(contextBridge)

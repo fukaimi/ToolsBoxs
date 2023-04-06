@@ -25,6 +25,11 @@ export const constantRouterMap = [
                         path: '/apis/chatGPT/index',
                         name: 'ChatGPT',
                         component: () => import('@/views/apis/chatGPT/index')
+                    },
+                    {
+                        path: '/apis/chatGPTMirrorimage/index',
+                        name: 'ChatGPTMirrorImage',
+                        component: () => import('@/views/apis/chatGPTMirrorimage/index')
                     }
                 ]
             },
@@ -33,7 +38,7 @@ export const constantRouterMap = [
                 name: 'Tools',
                 component: Menu,
                 props: {id: 'tools'},
-                redirect: {name: 'FavoritesUrl'},
+                redirect: {name: 'Translation'},
                 children: [
                     {
                         path: '/tools/favoritesUrl/index',

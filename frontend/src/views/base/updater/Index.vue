@@ -31,7 +31,7 @@
         </p>
         <p style="text-align: left">
           <a-icon :style="{ color: 'green' }" type="check-circle"/>
-          能够正常的访问GitHub <a>https://github.com/ &gt;</a>
+          能够正常的访问GitHub <a href="https://github.com/fukaimi/tools/blob/main/out/">https://github.com/fukaimi/tools/blob/main/out/ &gt;</a>
         </p>
       </div>
     </a-result>
