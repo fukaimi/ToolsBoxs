@@ -180,6 +180,12 @@ export default {
               str +=    '                </el-select>\n'
             }
             str +=      '              </el-form-item>\n'
+            if (this.mark !== 0){
+              let li = 24 / this.mark
+              // let sli = 24 - li
+              str = '<hsa-col :sm="24" :md="12" :lg="' + li + '">\n' + str
+              str += '</hsa-col>\n'
+            }
             if (values.options) {
               str += '//以下是js部分 \n'
               let value = values.options
@@ -210,12 +216,7 @@ export default {
               }
               str += ']\n}'
             }
-            if (this.mark !== 0){
-              let li = 24 / this.mark
-              // let sli = 24 - li
-              str = '<hsa-col :sm="24" :md="12" :lg="' + li + '">\n' + str
-              str += '</hsa-col>\n'
-            }
+
             this.$emit('setStr',str)
           }, 2000);
         }

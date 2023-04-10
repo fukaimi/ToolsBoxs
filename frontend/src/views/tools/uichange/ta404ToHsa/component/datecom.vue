@@ -53,6 +53,46 @@
             >
             </a-input>
           </a-form-item>
+          <a-form-item
+            :label-col="formItemLayout.labelCol"
+            :wrapper-col="formItemLayout.wrapperCol"
+            label="日期框类型">
+            <a-select
+              v-decorator="[
+                'type',
+                { rules: [{ required: true, message: '请选择类型!' }] },
+              ]"
+              placeholder="请选择类型"
+            >
+              <a-select-option value="date">
+                日
+              </a-select-option>
+              <a-select-option value="week">
+                周
+              </a-select-option>
+              <a-select-option value="month">
+                月
+              </a-select-option>
+              <a-select-option value="year">
+                年
+              </a-select-option>
+              <a-select-option value="dates">
+                多个日期
+              </a-select-option>
+              <a-select-option value="datetime">
+                datetime
+              </a-select-option>
+              <a-select-option value="datetimerange">
+                datetimerange
+              </a-select-option>
+              <a-select-option value="daterange">
+                daterange
+              </a-select-option>
+              <a-select-option value="monthrange">
+                monthrange
+              </a-select-option>
+            </a-select>
+          </a-form-item>
           <template>
             <a-alert
               message="参考:[{ required: true, message: '请选择' }]"
@@ -132,11 +172,15 @@ export default {
             if(values.format){
               str += '                  format="' + values.format +'"\n'
             }
+            if(values.type){
+              str += '                  type="' + values.type + '"\n'
+            }
+
             str +=      '                  class="widthAuto"\n' +
                   '                  style="width:100%"\n' +
                   '                  value-format="timestamp"\n'+
                   '                >\n'+
-            '                </<el-date-picker>\n' +
+            '                </el-date-picker>\n' +
                 '              </el-form-item>\n'
             if (this.mark !== 0){
               let li = 24 / this.mark

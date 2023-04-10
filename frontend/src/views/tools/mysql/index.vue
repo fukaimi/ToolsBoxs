@@ -365,6 +365,7 @@ export default {
           }
           return;
         }
+        this.spinning = false
         self.$message.error(res.result.message);
       })
     },
