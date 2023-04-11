@@ -34,6 +34,11 @@ export const constantRouterMap = [
                 ]
             },
             {
+                path: '/base/index/index.vue',
+                name: 'index',
+                component: () => import('@/views/base/index/index.vue')
+            },
+            {
                 path: '/tools',
                 name: 'Tools',
                 component: Menu,

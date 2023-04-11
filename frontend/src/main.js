@@ -7,12 +7,12 @@ import { VueAxios } from './utils/request'
 import IpcRenderer from '@/utils/ipcRenderer'
 import baseUtil from '@/utils/baseUtil'
 import CodeEditor from 'bin-code-editor';
+import {systemConfig} from '@/api/systemConfig'
 // markdown样式
 import "github-markdown-css";
 
 //json代码框
 Vue.use(CodeEditor);
-
 
 // 使用antd
 Vue.use(antd)
@@ -25,6 +25,7 @@ Vue.use(IpcRenderer)
 
 Vue.use(baseUtil)
 
+Vue.prototype.systemConfig = systemConfig
 Vue.config.productionTip = false
 
 new Vue({

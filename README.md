@@ -1,5 +1,8 @@
 # 该项目来源于 electron-egg framework 2.0
 ## 🌏[中文](https://www.yuque.com/u34495/mivcfg) | [English](https://www.yuque.com/u34495/ee-doc) 
+### 2023年4月11日14:57:58
+- 新增首页:必应壁纸 + 每日一言 + 农历
+
 ### 2023年4月6日13:25:00
 - 新增HSA模板增加列数设置
 

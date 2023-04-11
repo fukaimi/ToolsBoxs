@@ -10,14 +10,14 @@
       </div>
       <a-menu class="menu-item" theme="light" mode="inline" :default-selected-keys="[default_key]" @click="menuHandle">
         <a-menu-item v-for="(menuInfo, index) in menu" :key="index">
-          <a-icon :type="menuInfo.icon" />
+          <a-icon :type="menuInfo.icon"/>
           {{ menuInfo.title }}
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
     <a-layout>
       <a-layout-content class="layout-content">
-        <router-view />
+        <router-view/>
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -28,16 +28,25 @@ export default {
   data() {
     return {
       collapsed: true,
-      default_key: 'menu_0',
+      default_key: 'menu',
       current: '',
       menu: {
-        'menu_00' : {
+        'menu': {
+          extend: false,
+          icon: 'appstore',
+          title: '首页',
+          pageName: 'index',
+          params: {},
+        },
+        'menu_00': {
+          extend: true,
           icon: 'youtube',
           title: '生活',
           pageName: 'Apis',
           params: {},
         },
-        'menu_0' : {
+        'menu_0': {
+          extend: true,
           icon: 'bug',
           title: '工具',
           pageName: 'Tools',
@@ -49,7 +58,8 @@ export default {
         //   pageName: 'Music',
         //   params: {},
         // },
-        'menu_1' : {
+        'menu_1': {
+          extend: true,
           icon: 'home',
           title: '其他',
           pageName: 'Base',
@@ -64,17 +74,17 @@ export default {
       }
     };
   },
-  created () {
+  created() {
   },
-  mounted () {
+  mounted() {
     this.menuHandle()
   },
   methods: {
-    menuHandle (e) {
+    menuHandle(e) {
       this.current = e ? e.key : this.default_key;
       const linkInfo = this.menu[this.current]
       console.log('[home] load page:', linkInfo.pageName);
-      this.$router.push({ name: linkInfo.pageName, params: linkInfo.params})
+      this.$router.push({name: linkInfo.pageName, params: linkInfo.params})
     },
   },
 };
@@ -83,18 +93,22 @@ export default {
 // 嵌套
 #app-layout-sider {
   height: 100%;
+
   .logo {
     border-bottom: 1px solid #e8e8e8;
   }
+
   .pic-logo {
     height: 32px;
     //background: rgba(139, 137, 137, 0.2);
     margin: 10px;
   }
+
   .layout-sider {
     border-top: 1px solid #e8e8e8;
     border-right: 1px solid #e8e8e8;
   }
+
   .menu-item {
     .ant-menu-item {
       background-color: #fff;
@@ -103,6 +117,7 @@ export default {
       padding: 0 0px !important;
     }
   }
+
   .layout-content {
     //background-color: #fff;
   }
