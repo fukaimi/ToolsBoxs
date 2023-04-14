@@ -1,5 +1,6 @@
 const Appliaction = require('ee-core').Appliaction;
 
+
 class Main extends Appliaction {
 
   constructor() {
@@ -38,12 +39,14 @@ class Main extends Appliaction {
 
   /**
    * before app close
-   */  
+   */
   async beforeClose () {
     // do some things
 
   }
+
+
 }
 
 new Main();
- 
+

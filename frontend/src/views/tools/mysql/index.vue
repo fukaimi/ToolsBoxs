@@ -126,7 +126,6 @@
 </template>
 <script>
 import {ipcApiRoute} from "@/api/main"
-import exportExcel from '@/utils/exportExcel'
 import ExportExcel from "@/utils/exportExcel";
 
 const columns = [

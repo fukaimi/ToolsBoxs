@@ -17,6 +17,7 @@
     "file-saver": "^2.0.5",
     "keymaster": "^1.6.2",
     "reqwest": "^2.0.5",
+    "screenfull": "^6.0.2",
     "socket.io-client": "^4.4.1",
     "store2": "^2.13.2",
     "text-loader": "0.0.1",

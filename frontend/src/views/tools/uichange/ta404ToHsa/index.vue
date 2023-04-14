@@ -12,9 +12,6 @@
           <a-button type="primary" block class="but" @click="showModaCom(1)">
             新建Card
           </a-button>
-          <a-button type="primary" block class="but" @click="showModaCom(1)">
-            新建Card
-          </a-button>
           <a-button type="primary" block class="but" @click="showModaCom(2)">
             新建下拉框
           </a-button>

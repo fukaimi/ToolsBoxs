@@ -1,10 +1,12 @@
 <template>
   <a-layout id="app-layout-sider">
+    <!--    <div style="-webkit-app-region: drag;" class="div"></div>-->
     <a-layout-sider
       v-model="collapsed"
       theme="light"
       class="layout-sider"
     >
+      <tis></tis>
       <div class="logo">
         <img class="pic-logo" src="~@/assets/logo.png">
       </div>
@@ -23,8 +25,11 @@
   </a-layout>
 </template>
 <script>
+
+import Tis from "@/layouts/Tis";
 export default {
   name: 'AppSider',
+  components: {Tis},
   data() {
     return {
       collapsed: true,
