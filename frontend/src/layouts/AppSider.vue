@@ -6,7 +6,7 @@
       theme="light"
       class="layout-sider"
     >
-      <tis></tis>
+      <!--      <tis></tis>-->
       <div class="logo">
         <img class="pic-logo" src="~@/assets/logo.png">
       </div>
@@ -26,10 +26,10 @@
 </template>
 <script>
 
-import Tis from "@/layouts/Tis";
+// import Tis from "@/layouts/Tis";
 export default {
   name: 'AppSider',
-  components: {Tis},
+  // components: {Tis},
   data() {
     return {
       collapsed: true,

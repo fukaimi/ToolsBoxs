@@ -57,7 +57,7 @@ module.exports = (appInfo) => {
       nodeIntegration: true,
       //preload: path.join(appInfo.baseDir, 'preload', 'bridge.js'),
     },
-    frame: false,
+    frame: true,
     show: true,
     icon: path.join(appInfo.home, 'public', 'images', 'logo-32.png'),
   };
@@ -165,7 +165,7 @@ module.exports = (appInfo) => {
       linux: true,
       options: {
         provider: 'generic',
-        url: 'https://github.com/fukaimi/tools/raw/main/out/'
+        url: 'https://gitcode.net/u010290539/autoupdater/-/raw/master/tools/'
       },
       force: true,
     },

@@ -19,7 +19,7 @@ export const constantRouterMap = [
                 name: 'Apis',
                 component: Menu,
                 props: {id: 'apis'},
-                redirect: {name: 'ChatGPT'},
+                redirect: {name: 'Day60S'},
                 children: [
                     {
                         path: '/apis/chatGPT/index',
@@ -30,6 +30,11 @@ export const constantRouterMap = [
                         path: '/apis/chatGPTMirrorimage/index',
                         name: 'ChatGPTMirrorImage',
                         component: () => import('@/views/apis/chatGPTMirrorimage/index')
+                    },
+                    {
+                        path: '/apis/days/index',
+                        name: 'Day60S',
+                        component: () => import('@/views/apis/days/index')
                     }
                 ]
             },

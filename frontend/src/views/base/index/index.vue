@@ -180,6 +180,9 @@ export default {
       this.intervalId = setInterval(() => {
         this.nowtime = moment(new Date()).format("HH:mm")
         this.mi--
+        if (Number.isInteger(this.mi / 30)){
+            this.qinggan()
+        }
         if (this.mi <= 0) {
           if (this.checked) {
             this.add()

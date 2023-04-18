@@ -3,6 +3,12 @@
  */
 export default {
     apis: {
+        'menu_302': {
+            icon: 'global',
+            title: '每天60S',
+            pageName: 'Day60S',
+            params: {}
+        },
         'menu_300': {
             icon: 'robot',
             title: 'ChatGPT',
