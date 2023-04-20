@@ -9,6 +9,12 @@ export default {
             pageName: 'Day60S',
             params: {}
         },
+        'menu_303': {
+            icon: 'bar-chart',
+            title: '今日油价',
+            pageName: 'OilPrice',
+            params: {}
+        },
         'menu_300': {
             icon: 'robot',
             title: 'ChatGPT',

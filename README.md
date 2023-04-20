@@ -1,5 +1,8 @@
 # 该项目来源于 electron-egg framework 2.0
 ## 🌏[中文](https://www.yuque.com/u34495/mivcfg) | [English](https://www.yuque.com/u34495/ee-doc) 
+###2023年4月19日17:42:56
+- 新增每天60S功能
+
 ### 2023年4月11日14:57:58
 - 新增首页:必应壁纸 + 每日一言 + 农历
 

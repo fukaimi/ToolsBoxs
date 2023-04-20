@@ -165,7 +165,7 @@ module.exports = (appInfo) => {
       linux: true,
       options: {
         provider: 'generic',
-        url: 'https://gitcode.net/u010290539/autoupdater/-/raw/master/tools/'
+        url: 'https://gitee.com/fukaimin/tools/raw/master/out/'
       },
       force: true,
     },

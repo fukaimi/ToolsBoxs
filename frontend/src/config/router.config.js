@@ -35,6 +35,11 @@ export const constantRouterMap = [
                         path: '/apis/days/index',
                         name: 'Day60S',
                         component: () => import('@/views/apis/days/index')
+                    },
+                    {
+                        path: '/views/apis/oilPrice/OilPrice',
+                        name: 'OilPrice',
+                        component: () => import('@/views/apis/oilPrice/OilPrice')
                     }
                 ]
             },

@@ -31,8 +31,13 @@
         </p>
         <p style="text-align: left">
           <a-icon :style="{ color: 'green' }" type="check-circle"/>
-          能够正常的访问GitHub <a href="https://github.com/fukaimi/tools/blob/main/out/">https://github.com/fukaimi/tools/blob/main/out/ &gt;</a>
+          能够正常的访问GitHub <a target="_blank" href="https://github.com/fukaimi/tools/blob/main/out/">https://github.com/fukaimi/tools/blob/main/out/ &gt;</a>
         </p>
+        <p style="text-align: left">
+          <a-icon :style="{ color: 'green' }" type="check-circle"/>
+          大陆用户访问:<a target="_blank" href="https://gitee.com/fukaimin/tools/blob/master/out">https://gitee.com/fukaimin/tools/blob/master/out</a>
+        </p>
+
       </div>
     </a-result>
   </div>
