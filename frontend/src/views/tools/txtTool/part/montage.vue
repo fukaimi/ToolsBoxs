@@ -75,11 +75,11 @@ export default {
       rules: {
         txtTemplate: [
           {required: true, message: '请输入模板', trigger: 'blur'},
-          {min: 3, max: 5000, message: '不得超过5000字符', trigger: 'blur'},
+          {min: 3, message: '不得少于3字符', trigger: 'blur'},
         ],
         txt: [
           {required: true, message: '请输入模板', trigger: 'blur'},
-          {min: 3, max: 5000, message: '不得超过5000字符', trigger: 'blur'},
+          {min: 3,  message: '不得少于3字符', trigger: 'blur'},
         ]
       },
     };

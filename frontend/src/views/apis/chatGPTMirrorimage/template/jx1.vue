@@ -1,6 +1,6 @@
 <template>
   <div>
-    <iframe id="chatgptmirror" src="https://chat.extkj.cn" frameborder="0" ></iframe>
+    <iframe id="google" src="https://chat.extkj.cn" frameborder="0" ></iframe>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
      * iframe-宽高自适应显示
      */
     function changeMobsfIframe(){
-      const mobsf = document.getElementById('chatgptmirror');
+      const mobsf = document.getElementById('google');
       const deviceWidth = document.body.clientWidth;
       const deviceHeight = document.body.clientHeight;
       mobsf.style.width = (Number(deviceWidth)-240) + 'px'; //数字是页面布局宽度差值

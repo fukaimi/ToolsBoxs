@@ -59,6 +59,11 @@ export default {
             title: 'Hsa Seed代码生成',
             pageName: 'Ta404ToHsaSeed',
             params: {}
+        },'menu_008': {
+            icon: 'laptop',
+            title: 'TA404代码生成',
+            pageName: 'TA404',
+            params: {}
         }, 'menu_006': {
             icon: 'file-text',
             title: '文本编辑',

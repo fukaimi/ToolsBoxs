@@ -79,6 +79,10 @@ export const constantRouterMap = [
                         path: '/tools/uichange/ta404ToHsa/index',
                         name: 'Ta404ToHsaSeed',
                         component: () => import('@/views/tools/uichange/ta404ToHsa/index')
+                    },                    {
+                        path: '/tools/uichange/ta404/index',
+                        name: 'TA404',
+                        component: () => import('@/views/tools/uichange/ta404/index')
                     }, {
                         path: '/tools/txtTool/index',
                         name: 'TxtTool',

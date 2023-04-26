@@ -51,7 +51,7 @@
           <span :style="oilprice.p98 < 7 ? styleGren : oilprice.p98 > 8 ? styleRed : styleWarn">{{ oilprice.p98 }} 元</span>
         </a-descriptions-item>
         <a-descriptions-item label="数据更新时间">
-          {{ oilprice.time }} 元
+          {{ oilprice.time }}
         </a-descriptions-item>
       </a-descriptions>
     </a-card>
