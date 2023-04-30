@@ -3,6 +3,12 @@
  */
 export default {
     apis: {
+        'menu_304':{
+            icon: 'slack',
+            title:'文心一言',
+            pageName: 'baiduAi',
+            params:{}
+        },
         'menu_302': {
             icon: 'global',
             title: '每天60S',

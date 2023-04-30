@@ -22,6 +22,11 @@ export const constantRouterMap = [
                 redirect: {name: 'Day60S'},
                 children: [
                     {
+                        path: '/tools/baiduAi/index',
+                        name: 'baiduAi',
+                        component: () => import('@/views/tools/baiduAi/index')
+                    },
+                    {
                         path: '/apis/chatGPT/index',
                         name: 'ChatGPT',
                         component: () => import('@/views/apis/chatGPT/index')
