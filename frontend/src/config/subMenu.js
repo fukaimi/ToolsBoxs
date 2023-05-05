@@ -76,6 +76,12 @@ export default {
             pageName: 'TxtTool',
             params: {}
         },
+        'menu_009': {
+            icon: 'bulb',
+            title: '草稿本',
+            pageName: 'Bulb',
+            params: {}
+        },
     },
     base: {
         // 'menu_100' : {

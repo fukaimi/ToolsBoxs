@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       menu:{},
-      default_key: 'menu_302',
+      default_key: 'menu_304',
       current: '',
       keys: []
     };
