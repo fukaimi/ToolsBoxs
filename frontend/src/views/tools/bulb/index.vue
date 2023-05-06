@@ -2,28 +2,21 @@
   <div>
     <a-spin :spinning="spinning">
       <div style="text-align: left;height: 100vh">
-        <b-code-editor
-          ref="editor"
+        <a-textarea
           v-model="kzt"
-          :auto-format="true"
-          :smart-indent="true"
-          theme="idea"
-          :indent-unit="4"
-          :line-wrap="false"
-          style="height: 100vh"
-          :lint="false">
-        </b-code-editor>
+          class="bg"
+          placeholder=""
+          :row="10"
+          :minRows="10"
+          style="{font-size: 22px;}"
+          @change="kztChange"
+          @select="testSelect"/>
       </div>
     </a-spin>
   </div>
 </template>
 <script>
 import {ipcApiRoute} from "@/api/main"
-import Vue from 'vue'
-import VueClipBoard from 'vue-clipboard2'
-Vue.use(VueClipBoard)
-
-
 
 export default {
   data() {
@@ -60,7 +53,6 @@ export default {
         this.resourceUrl = ressource.resourceUrl
         this.kzt = ressource.kzt
         this.isUpdate = true
-        self.$message.success(`完成`);
       })
     },
     kztChange(e) {
@@ -234,17 +226,9 @@ export default {
 </script>
 
 <style scoped>
-/*/deep/.CodeMirror {*/
-/*  font-family: monospace;*/
-/*  height: 100vh;*/
-/*  color: black;*/
-/*  direction: ltr;*/
-/*  width: 45rem;*/
-/*}*/
-/deep/ .CodeMirror {
-  font-family: monospace;
-  height: 100vh;
-  color: black;
-  direction: ltr;
+.bg{
+  background-color: #FAFAFA;
+  background-image: linear-gradient(90deg, #FAFAFA 0%, #74EBD5 44%, #9FACE6 100%);
+  height: 100vh
 }
 </style>
