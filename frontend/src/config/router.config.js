@@ -12,17 +12,22 @@ const RouteView = {
 export const constantRouterMap = [
     {
         path: '/',
-        component: AppSider,
+        name: 'index',
+        component: () => import('@/views/base/index/index.vue')
+    },
+    {
+        path: '/appSider',
+        component: RouteView,
         children: [
             {
-                path: '/apis',
+                path: 'apis',
                 name: 'Apis',
-                component: Menu,
+                component: RouteView,
                 props: {id: 'apis'},
                 redirect: {name: 'Day60S'},
                 children: [
                     {
-                        path: '/tools/baiduAi/index',
+                        path: 'tools/baiduAi/index',
                         name: 'baiduAi',
                         component: () => import('@/views/tools/baiduAi/index')
                     },
@@ -49,14 +54,9 @@ export const constantRouterMap = [
                 ]
             },
             {
-                path: '/base/index/index.vue',
-                name: 'index',
-                component: () => import('@/views/base/index/index.vue')
-            },
-            {
                 path: '/tools',
                 name: 'Tools',
-                component: Menu,
+                component: RouteView,
                 props: {id: 'tools'},
                 redirect: {name: 'Translation'},
                 children: [
@@ -120,7 +120,7 @@ export const constantRouterMap = [
             {
                 path: '/base',
                 name: 'Base',
-                component: Menu,
+                component: RouteView,
                 props: {id: 'base'},
                 redirect: {name: 'BaseUpdaterIndex'},
                 children: [
@@ -209,7 +209,7 @@ export const constantRouterMap = [
             {
                 path: '/other',
                 name: 'Other',
-                component: Menu,
+                component: RouteView,
                 props: {id: 'other'},
                 redirect: {name: 'OtherTestIndex'},
                 children: [

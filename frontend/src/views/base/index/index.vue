@@ -3,18 +3,79 @@
     id="app"
     ref="screen"
     :style="autoUrl">
-    <div class="divBox">
-      <span style="color: #fff;font-size: 9rem;font-family: 方正粗圆_GBK">{{ nowtime }}<font size="5rem">{{
-        xq
-      }}</font><br></span>
-      <span style="color: #fff;">{{ today }}&nbsp;&nbsp;&nbsp;&nbsp;{{ nl }}
-        <a-tag color="#2db7f5">
-          {{ jq }}
-        </a-tag>
-        <a-tag color="#2db7f5">
-          {{ gzr }}
-        </a-tag>
-      </span>
+    <div class="divBox" style="overflow-y: auto">
+      <div style="margin-top: 10rem">
+        <template>
+          <div>
+            <a-row :gutter="16">
+              <a-col :span="12">
+                <a-card :bordered="false" style="background-color:rgba(0,0,0,0.2);height: 15rem">
+                  <span style="color: #fff;font-size: 9rem;font-family: 方正粗圆_GBK">{{ nowtime }}<font size="5rem">{{
+                    jiejiari.cnweekday
+                  }}</font><br></span>
+                </a-card>
+              </a-col>
+              <a-col :span="12">
+                <a-card :bordered="false" style="background-color:rgba(0,0,0,0.2);height: 15rem;text-align: left">
+                  <a-row>
+                    <a-col :span="12" style="width: 50%;font-size: 9rem;">
+                      <font
+                        style="background: #ffffff;border-radius: 5px;background-color:rgba(242,242,242,0.6);color: red">
+                        {{ today }}
+                      </font>
+
+                    </a-col>
+                    <a-col :span="12" style="overflow-y: auto;height: 30vh">
+                      <a-row>
+                        <a-col>
+                          <span style="color: #ffffff;"><font size="3rem">                      <a-tag color="#2db7f5">
+                            {{ jiejiari.info }}
+                          </a-tag> {{ jiejiari.lunaryear }}{{ jiejiari.lunarmonth }}{{
+                            jiejiari.lunarday
+                          }}</font></span>
+                        </a-col>
+                      </a-row>
+                      <a-row v-show="jiejiari.name" style="padding-top: 0.3rem;">
+                        <a-tag color="#f50">{{ jiejiari.name }} {{ jiejiari.enname }}</a-tag>
+                      </a-row>
+                      <a-row style="padding-top: 0.3rem;color: #ffffff;">
+                        <font size="3rem">今日</font><font size="3rem" color="red">
+                          <a-tag v-if="jiejiari.isnotwork === 0" color="#f50">需要上班</a-tag>
+                        </font><font v-if="jiejiari.isnotwork === 1" size="3rem">
+                          <a-tag color="#87d068">
+                            无需上班
+                          </a-tag>
+                        </font>
+                      </a-row>
+                      <a-row style="color: #ffffff;">
+                        <font size="3rem">放假提示: {{ jiejiari.tip }}</font>
+                      </a-row>
+                      <a-row style="color: #ffffff;">
+                        <font size="3rem">拼假建议: {{ jiejiari.rest }}</font>
+                      </a-row>
+                    </a-col>
+                  </a-row>
+                </a-card>
+              </a-col>
+            </a-row>
+          </div>
+        </template>
+      </div>
+      <div
+        style="width: 70rem;margin-top: 2rem">
+        <a-card
+          v-for="(item,index) in mainMenu"
+          :key="index"
+          :bordered="false"
+          style="background-color:rgba(0,0,0,0.5);border-radius: 9px;text-align: left;margin-bottom: 2rem">
+          <span slot="title" style="color: #ffffff">{{ item.name }}</span>
+          <div>
+            <a-button v-for="(it,ind) in item.param" :key="ind" type="dashed" ghost style="margin:10px" @click="openWindow(it.pageName)">
+              {{ it.title }}
+            </a-button>
+          </div>
+        </a-card>
+      </div>
     </div>
     <div
       style="background-color:rgba(0,0,0,0.5);width: 30%;height: 10%;position: absolute;right: 0;bottom: 0.5rem;border-radius: 0.4rem;color: #fff;text-align: left">
@@ -35,19 +96,19 @@
         <a-button type="link" @click="ss"> 下一张
           <a-icon type="right"/>
         </a-button>
-        <a-button
-          v-if="isFullscreen"
-          ref="qp"
-          ghost
-          icon="fullscreen"
-          @click="quanping">
-        </a-button>
-        <a-button
-          v-if="!isFullscreen"
-          ghost
-          icon="fullscreen-exit"
-          @click="quanping">
-        </a-button>
+        <!--a-button        <a-button-->
+        <!--          v-if="isFullscreen"-->
+        <!--          ref="qp"-->
+        <!--          ghost-->
+        <!--          icon="fullscreen"-->
+        <!--          @click="quanping">-->
+        <!--        </a-button>-->
+        <!--        <a-button-->
+        <!--          v-if="!isFullscreen"-->
+        <!--          ghost-->
+        <!--          icon="fullscreen-exit"-->
+        <!--          @click="quanping">-->
+        <!--        </a-button>-->
       </a-button-group>
     </div>
 
@@ -58,11 +119,37 @@
 import {ipcApiRoute} from "@/api/main";
 import moment from "moment";
 import screenfull from "screenfull";
+import {mainMenu} from "@/config/mainMenu";
+import subMenu from "@/config/subMenu";
 
 export default {
   name: "Index",
   data() {
     return {
+      mainMenu: mainMenu,
+      subMenu: subMenu,
+      jiejiari: {
+        date: "2023-05-01",
+        daycode: 1,
+        weekday: 1,
+        cnweekday: "星期一",
+        lunaryear: "癸卯",
+        lunarmonth: "三月",
+        lunarday: "十二",
+        info: "节假日",
+        start: 0,
+        now: 2,
+        end: 4,
+        holiday: "5月1号",
+        name: "劳动节",
+        enname: "International Labour Day",
+        isnotwork: 1,
+        vacation: [],
+        remark: [],
+        wage: 3,
+        tip: "4月29日至5月3日放假调休，共5天。4月23日（星期日）、5月6日（星期六）上班。",
+        rest: "5月4日到5月6日请假3天，加上5月7日周日连休可拼9天长假。"
+      },
       isFullscreen: false,//是否全屏
       checked: true,
       mi: 300,
@@ -83,15 +170,15 @@ export default {
     }
   },
   created() {
+    this.initTool()
     this.init()
     this.qingan()
 
   },
   mounted() {
+    this.initTool()
     this.get(1)
     this.dataRefreh()
-
-
   },
   methods: {
     init() {
@@ -100,20 +187,51 @@ export default {
       const params = {
         action: 'GET',
         data: {
-          url: this.systemConfig.nongli
+          date: moment(new Date()).format('YYYY-MM-DD'),
+          url: this.systemConfig.jiejiari
         }
       }
       this.$ipcInvoke(ipcApiRoute.dataConfigOperation, params).then(res => {
         if (res.result) {
-          let result = res.result;
-          this.today = result.today
-          this.jq = result.jq
-          this.nl = result.nl
-          this.xq = result.xq
-          this.gzr = result.gzr
-          this.nly = result.nly
+          this.jiejiari = res.result.data.list[0];
+          this.today = moment(this.jiejiari.date).format('DD')
         }
       })
+      // this.$ipcInvoke(ipcApiRoute.dataConfigOperation, params).then(res => {
+      //   if (res.result) {
+      //     let result = res.result;
+      //     this.today = result.today
+      //     this.jq = result.jq
+      //     this.nl = result.nl
+      //     this.xq = result.xq
+      //     this.gzr = result.gzr
+      //     this.nly = result.nly
+      //   }
+      // })
+    },
+    initTool() {
+      for (let mainMenuKey in mainMenu) {
+        for (let subMenuKey in subMenu) {
+          if (mainMenu[mainMenuKey].id === subMenuKey) {
+            let subMenu1 = subMenu[subMenuKey]
+            for (let subMenu1Key in subMenu1) {
+              mainMenu[mainMenuKey].param.push(subMenu1[subMenu1Key])
+            }
+          }
+        }
+      }
+      console.log(mainMenu)
+    },
+    openWindow(pageName){
+      // this.$ipcInvoke(ipcApiRoute.createWindow, {type:'vue',content:'baiduAi'}).then(r => {
+      //   console.log(r);
+      // })
+      // this.$message.error(pageName)
+      const routeUrl = this.$router.resolve(
+          { name: pageName }
+      )
+      // this.$message.success(routeUrl)
+      window.open(routeUrl.href, '_blank')
     },
     quanping() {
       screenfull.toggle(this.$refs.screen);
@@ -180,8 +298,8 @@ export default {
       this.intervalId = setInterval(() => {
         this.nowtime = moment(new Date()).format("HH:mm")
         this.mi--
-        if (Number.isInteger(this.mi / 30)){
-            this.qinggan()
+        if (Number.isInteger(this.mi / 30)) {
+          this.qinggan()
         }
         if (this.mi <= 0) {
           if (this.checked) {
@@ -208,7 +326,7 @@ html, body, #app {
 #app {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
   background-size: cover;
 }
 
@@ -217,12 +335,15 @@ html, body, #app {
   position: absolute;
   left: 50%;
   top: 50%;
+  overflow-y: auto;
+  height: 95vh;
   transform: translate(-50%, -50%);
 }
 
 #app {
   height: 100%;
   text-align: center;
+}
 
 .layout-sider {
   border-top: 1px solid #e8e8e8;
@@ -231,5 +352,10 @@ html, body, #app {
   overflow: auto;
 }
 
+::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+  color: transparent;
 }
+
 </style>

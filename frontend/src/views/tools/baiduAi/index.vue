@@ -29,8 +29,8 @@ export default {
       const mobsf = document.getElementById('baidu');
       const deviceWidth = document.body.clientWidth;
       const deviceHeight = document.body.clientHeight;
-      mobsf.style.width = (Number(deviceWidth)-280) + 'px'; //数字是页面布局宽度差值
-      mobsf.style.height = (Number(deviceHeight)-10) + 'px'; //数字是页面布局高度差
+      mobsf.style.width = (Number(deviceWidth)-0) + 'px'; //数字是页面布局宽度差值
+      mobsf.style.height = (Number(deviceHeight)-0) + 'px'; //数字是页面布局高度差
     }
 
     changeMobsfIframe()
