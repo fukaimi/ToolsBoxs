@@ -210,17 +210,17 @@ export default {
       // })
     },
     initTool() {
-      for (let mainMenuKey in mainMenu) {
-        for (let subMenuKey in subMenu) {
-          if (mainMenu[mainMenuKey].id === subMenuKey) {
-            let subMenu1 = subMenu[subMenuKey]
-            for (let subMenu1Key in subMenu1) {
-              mainMenu[mainMenuKey].param.push(subMenu1[subMenu1Key])
-            }
-          }
-        }
-      }
-      console.log(mainMenu)
+      // for (let mainMenuKey in mainMenu) {
+      //   for (let subMenuKey in subMenu) {
+      //     if (mainMenu[mainMenuKey].id === subMenuKey) {
+      //       let subMenu1 = subMenu[subMenuKey]
+      //       for (let subMenu1Key in subMenu1) {
+      //         mainMenu[mainMenuKey].param.push(subMenu1[subMenu1Key])
+      //       }
+      //     }
+      //   }
+      // }
+      // console.log(mainMenu)
     },
     openWindow(pageName){
       // this.$ipcInvoke(ipcApiRoute.createWindow, {type:'vue',content:'baiduAi'}).then(r => {

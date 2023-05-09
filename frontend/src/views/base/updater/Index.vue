@@ -37,7 +37,10 @@
           <a-icon :style="{ color: 'green' }" type="check-circle"/>
           大陆用户访问:<a target="_blank" href="https://gitee.com/fukaimin/tools/blob/master/out">https://gitee.com/fukaimin/tools/blob/master/out</a>
         </p>
-
+        <p style="text-align: left">
+          <a-icon :style="{ color: 'green' }" type="check-circle"/>
+          无法下载请访问:<a target="_blank" href="https://gitee.com/fukaimin/tools/tree/master/out">https://gitee.com/fukaimin/tools/tree/master/out</a>
+        </p>
       </div>
     </a-result>
   </div>
