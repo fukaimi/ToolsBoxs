@@ -1,13 +1,16 @@
 <template>
   <div >
+    <home/>
     <img :src="src" style="padding-top: 3rem" />
     <a-button size="small" style="position: absolute;z-index: 9999;right: 1rem;top: 1rem" @click="downs">下载</a-button>
   </div>
 </template>
 
 <script>
+import Home from "@/views/base/common/home";
 export default {
   name: "Index",
+  components: {Home},
   data(){
     return{
       src:''

@@ -74,8 +74,10 @@
 <!--</template>-->
 <script>
 import {ipcApiRoute, specialIpcRoute} from '@/api/main'
+import Home from "@/views/base/common/home";
 
 export default {
+  components: {Home},
   data() {
     return {
       status: 0, // -1:异常，1：有可用更新，2：没有可用更新，3：下载中, 4：下载完成

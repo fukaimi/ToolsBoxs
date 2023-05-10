@@ -1,5 +1,6 @@
 <template>
   <a-tabs type="card" @change="callback">
+    <home/>
     <a-tab-pane v-for="(item,index) in menu" :key="index" :tab="item.tab">
       <youdao v-if="item.key === 'youdao'"></youdao>
       <microsoft v-if="item.key === 'microsoft'"></microsoft>
@@ -17,6 +18,7 @@ import microsoft from "@/views/tools/translation/template/microsoft";
 import tencent from "@/views/tools/translation/template/tencent";
 import google from "@/views/tools/translation/template/google";
 import iciba from "@/views/tools/translation/template/iciba";
+import Home from "@/views/base/common/home";
 
 const menu = [
     {
@@ -41,7 +43,7 @@ const menu = [
     src: 'https://www.iciba.com/fy'
   }]
 export default {
-  components: {youdao,microsoft,tencent,google,iciba},
+  components: {Home, youdao,microsoft,tencent,google,iciba},
   data() {
     return {
       menu

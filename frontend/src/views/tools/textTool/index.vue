@@ -1,5 +1,6 @@
 <template>
   <div style="overflow-y:auto">
+    <home/>
     <a-radio-group v-model="mode" style="position: absolute;top: 1rem;right: 1rem;z-index: 99999999">
       <a-radio-button value="top">
         横向
@@ -23,9 +24,10 @@
 </template>
 <script>
 import jsontool from './component/jsontool'
+import Home from "@/views/base/common/home";
 
 export default {
-  components: {jsontool},
+  components: {Home, jsontool},
   data() {
     return {
       mode: 'top',

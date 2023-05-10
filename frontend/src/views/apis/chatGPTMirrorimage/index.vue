@@ -9,7 +9,7 @@
         <a :href="href" target="_blank">点击访问</a>
       </div>
     </a-card>
-
+    <home/>
   </div>
 
 </template>
@@ -17,9 +17,11 @@
 <script>
 import moment from "moment";
 import {ipcApiRoute} from "@/api/main";
+import Home from "@/views/base/common/home";
 
 export default {
   name: "OilPrice",
+  components: {Home},
   data() {
     return {
       href: 'https://chat.extkj.cn',

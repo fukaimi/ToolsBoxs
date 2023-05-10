@@ -5,6 +5,7 @@ const systemConfig = {
     nongli:'https://v.api.aa1.cn/api/nl/',//nongli
     everyDay60s: 'https://api.qqsuu.cn/api/dm-60s',
     oilprice:'https://api.qqsuu.cn/api/dm-oilprice',
-    jiejiari: 'https://api.qqsuu.cn/api/dm-jiejiari'
+    jiejiari: 'https://api.qqsuu.cn/api/dm-jiejiari',
+    lish:'https://api.qqsuu.cn/api/dm-lishi'//
 }
 export { systemConfig }

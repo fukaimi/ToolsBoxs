@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <home/>
     <template>
       <a-alert message="正在与ChatGPT对话...(推荐使用免费的ChatGPT镜像站)" type="info" close-text="关闭提示" banner/>
     </template>
@@ -38,9 +39,11 @@
 
 <script>
 import {ipcApiRoute} from "@/api/main";
+import Home from "@/views/base/common/home";
 
 export default {
   name: "Index",
+  components: {Home},
   data() {
     return {
       deadline: Date.now() + 1000 * 30 * 6,//三分钟

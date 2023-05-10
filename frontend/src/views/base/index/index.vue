@@ -9,28 +9,28 @@
           <div>
             <a-row :gutter="16">
               <a-col :span="12">
-                <a-card :bordered="false" style="background-color:rgba(0,0,0,0.2);height: 15rem">
+                <a-card :bordered="false" style="background-color:rgba(0,0,0,0.2);height: 15rem;border-radius: 15px">
                   <span style="color: #fff;font-size: 9rem;font-family: 方正粗圆_GBK">{{ nowtime }}<font size="5rem">{{
                     jiejiari.cnweekday
                   }}</font><br></span>
                 </a-card>
               </a-col>
               <a-col :span="12">
-                <a-card :bordered="false" style="background-color:rgba(0,0,0,0.2);height: 15rem;text-align: left">
+                <a-card :bordered="false" style="background-color:rgba(0,0,0,0.2);height: 15rem;text-align: left;border-radius: 15px">
                   <a-row>
                     <a-col :span="12" style="width: 50%;font-size: 9rem;">
                       <font
-                        style="background: #ffffff;border-radius: 5px;background-color:rgba(242,242,242,0.6);color: red">
+                        style="background: #ffffff;border-radius: 5px;background-color:rgba(242,242,242,0.6);color: red;font-weight:bolder">
                         {{ today }}
                       </font>
 
                     </a-col>
-                    <a-col :span="12" style="overflow-y: auto;height: 30vh">
+                    <a-col :span="12" style="overflow-y: auto;height: 30vh;">
                       <a-row>
                         <a-col>
                           <span style="color: #ffffff;"><font size="3rem">                      <a-tag color="#2db7f5">
                             {{ jiejiari.info }}
-                          </a-tag> {{ jiejiari.lunaryear }}{{ jiejiari.lunarmonth }}{{
+                          </a-tag> {{ jiejiari.date }}{{ jiejiari.lunaryear }}{{ jiejiari.lunarmonth }}{{
                             jiejiari.lunarday
                           }}</font></span>
                         </a-col>
@@ -47,12 +47,17 @@
                           </a-tag>
                         </font>
                       </a-row>
-                      <a-row style="color: #ffffff;">
+                      <a-row v-if="jiejiari.tip" style="color: #ffffff;">
                         <font size="3rem">放假提示: {{ jiejiari.tip }}</font>
                       </a-row>
-                      <a-row style="color: #ffffff;">
+                      <a-row v-if="jiejiari.rest" style="color: #ffffff;">
                         <font size="3rem">拼假建议: {{ jiejiari.rest }}</font>
                       </a-row>
+                      <a-row style="color: #ffffff;">
+                        <a-row><font size="2rem">历史今天: </font></a-row>
+                        <a-row v-for="(item , inde) in lishi" :key="inde">{{ item.lsdate }}  {{ item.title }}</a-row>
+                      </a-row>
+
                     </a-col>
                   </a-row>
                 </a-card>
@@ -68,10 +73,16 @@
           :key="index"
           :bordered="false"
           style="background-color:rgba(0,0,0,0.5);border-radius: 9px;text-align: left;margin-bottom: 2rem">
-          <span slot="title" style="color: #ffffff">{{ item.name }}</span>
+          <span slot="title" style="color: #ffffff"><a-icon :type="item.icon"/>&nbsp; &nbsp; {{ item.name }}</span>
           <div>
-            <a-button v-for="(it,ind) in item.param" :key="ind" type="dashed" ghost style="margin:10px" @click="openWindow(it.pageName)">
-              {{ it.title }}
+            <a-button
+              v-for="(it,ind) in item.param"
+              :key="ind"
+              type="dashed"
+              ghost
+              style="margin:10px"
+              @click="openWindow(it.pageName)">
+              <a-icon :type="it.icon"/>&nbsp; &nbsp; {{ it.title }}
             </a-button>
           </div>
         </a-card>
@@ -88,6 +99,7 @@
     </div>
     <div style="float: right;padding-right: 1rem;padding-top: 0.5rem">
       <a-switch v-model="checked" checked-children="自动换图开" un-checked-children="自动换图关" default-checked/>
+      <!--      <a-switch v-model="checkOpen" checked-children="单窗口模式" un-checked-children="多窗口模式" default-checked/>-->
       <a-button-group>
         <a-button type="link" @click="add">
           <a-icon type="left"/>
@@ -111,6 +123,12 @@
         <!--        </a-button>-->
       </a-button-group>
     </div>
+    <div class="power">
+      问题反馈&nbsp; &nbsp;<a-icon type="mail"/>
+      fukaimi@live.cn &nbsp; &nbsp;<a-icon type="wechat"/>
+      fukaimi &nbsp; &nbsp;<a-icon type="qq"/>
+      534518938
+    </div>
 
   </div>
 </template>
@@ -126,6 +144,8 @@ export default {
   name: "Index",
   data() {
     return {
+      lishi:[],
+      checkOpen: true,
       mainMenu: mainMenu,
       subMenu: subMenu,
       jiejiari: {
@@ -173,12 +193,14 @@ export default {
     this.initTool()
     this.init()
     this.qingan()
+    this.initLishi()
 
   },
   mounted() {
     this.initTool()
     this.get(1)
     this.dataRefreh()
+    this.initLishi()
   },
   methods: {
     init() {
@@ -197,6 +219,7 @@ export default {
           this.today = moment(this.jiejiari.date).format('DD')
         }
       })
+
       // this.$ipcInvoke(ipcApiRoute.dataConfigOperation, params).then(res => {
       //   if (res.result) {
       //     let result = res.result;
@@ -208,6 +231,20 @@ export default {
       //     this.nly = result.nly
       //   }
       // })
+    },
+    initLishi(){
+      const params = {
+        action: 'GET',
+        data: {
+          date: moment(new Date()).format('MMDD'),
+          url: this.systemConfig.lish
+        }
+      }
+      this.$ipcInvoke(ipcApiRoute.dataConfigOperation, params).then(res => {
+        if (res.result) {
+          this.lishi = res.result.data.list;
+        }
+      })
     },
     initTool() {
       // for (let mainMenuKey in mainMenu) {
@@ -222,16 +259,18 @@ export default {
       // }
       // console.log(mainMenu)
     },
-    openWindow(pageName){
-      // this.$ipcInvoke(ipcApiRoute.createWindow, {type:'vue',content:'baiduAi'}).then(r => {
-      //   console.log(r);
-      // })
-      // this.$message.error(pageName)
-      const routeUrl = this.$router.resolve(
-          { name: pageName }
-      )
-      // this.$message.success(routeUrl)
-      window.open(routeUrl.href, '_blank')
+    openWindow(pageName) {
+      if (pageName === 'BaseUpdaterIndex') {
+        const routeUrl = this.$router.resolve(
+            {name: pageName}
+        )
+        // this.$message.success(routeUrl)
+        window.open(routeUrl.href, '_blank')
+      } else {
+        this.$router.push(
+            {name: pageName, params: {checkOpen: this.checkOpen}}
+        )
+      }
     },
     quanping() {
       screenfull.toggle(this.$refs.screen);
@@ -356,6 +395,26 @@ html, body, #app {
   height: 0;
   width: 0;
   color: transparent;
+}
+
+.power {
+  position: absolute;
+  z-index: 99999;
+  bottom: 0px;
+  background-color: rgba(248, 247, 247, 0.1);
+  width: 30rem;
+  border-radius: 15px;
+  left: 35%
+}
+
+.power:hover {
+  position: absolute;
+  z-index: 99999;
+  bottom: 0px;
+  background-color: rgba(248, 247, 247, 0.9);
+  width: 30rem;
+  border-radius: 15px;
+  left: 35%
 }
 
 </style>

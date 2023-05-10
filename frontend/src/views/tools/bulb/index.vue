@@ -1,5 +1,6 @@
 <template>
   <div>
+    <home/>
     <a-spin :spinning="spinning">
       <div style="text-align: left;height: 100vh">
         <a-textarea
@@ -17,8 +18,10 @@
 </template>
 <script>
 import {ipcApiRoute} from "@/api/main"
+import Home from "@/views/base/common/home";
 
 export default {
+  components: {Home},
   data() {
     return {
       spinning: false,

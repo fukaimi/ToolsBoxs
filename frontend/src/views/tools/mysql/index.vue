@@ -1,5 +1,6 @@
 <template>
   <div>
+    <home/>
     <a-spin :spinning="spinning">
       <div style="text-align: left">
         <a-card title="数据源选择" :bordered="false" size="small">
@@ -127,6 +128,7 @@
 <script>
 import {ipcApiRoute} from "@/api/main"
 import ExportExcel from "@/utils/exportExcel";
+import Home from "@/views/base/common/home";
 
 const columns = [
   {title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left'},
@@ -151,6 +153,7 @@ const data = [
 ];
 
 export default {
+  components: {Home},
   data() {
     return {
       spinning: false,

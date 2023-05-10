@@ -1,5 +1,6 @@
 <template>
   <div style="width: 720px;padding-top: 1rem">
+    <home/>
     <!--    <a-radio-group v-model="mode" :style="{ marginBottom: '8px' }">-->
     <!--      <a-radio-button value="top">-->
     <!--        Horizontal-->
@@ -34,9 +35,10 @@ import idcard from './idcard'
 import phone from './phone'
 import generatorCreditCode from './generatorCreditCode'
 import generatorOrgCode from './generatorOrgCode'
+import Home from "@/views/base/common/home";
 
 export default {
-  components:{bank,name,idcard,phone,generatorCreditCode,generatorOrgCode},
+  components:{Home, bank,name,idcard,phone,generatorCreditCode,generatorOrgCode},
   data() {
     return {
       mode: 'top',

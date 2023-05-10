@@ -1,10 +1,11 @@
 <template>
   <div id="app-base-screen">
+    <home/>
     <div class="one-block-1">
       <span>
         1. 屏幕信息
       </span>
-    </div>  
+    </div>
     <div class="one-block-2">
       <a-space>
         <a-button @click="getScreen(0)">获取当前鼠标位置</a-button>
@@ -16,7 +17,7 @@
       <span>
         结果：
       </span>
-    </div>  
+    </div>
     <div class="one-block-2">
       <a-descriptions title="">
         <a-descriptions-item v-for="(info, index) in data" :key="index" :label="info.title" >
@@ -28,8 +29,10 @@
 </template>
 <script>
 import { ipcApiRoute } from '@/api/main'
+import Home from "@/views/base/common/home";
 
 export default {
+  components: {Home},
   data() {
     return {
       data: [],

@@ -1,12 +1,16 @@
 <template>
   <div>
+    <home />
     <iframe id="baidu" src="https://yiyan.baidu.com/" frameborder="0" ></iframe>
   </div>
 </template>
 
 
 <script>
+
+import Home from "@/views/base/common/home";
 export default {
+  components: {Home},
   props:{
     src:{
       type:String,
@@ -19,6 +23,14 @@ export default {
   },
   data () {
     return {
+      homeShow: false
+    }
+  },
+  created() {
+    if(!this.$route.params.checkOpen){
+      this.checkOpen = true
+    }else {
+      this.checkOpen = false
     }
   },
   mounted(){
@@ -38,6 +50,7 @@ export default {
     window.onresize = function(){
       changeMobsfIframe()
     }
+
   },
   methods:{
     setSrc(src) {

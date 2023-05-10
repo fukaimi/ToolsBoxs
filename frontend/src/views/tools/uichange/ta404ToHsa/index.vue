@@ -1,5 +1,6 @@
 <template>
   <div>
+    <home/>
     <a-row style="padding-top:1rem;text-align: left;">
       <a-col :xs="4" :sm="8" :md="10" :lg="4" :xl="2">
         <div style="padding-left: 1rem">
@@ -191,10 +192,11 @@ import inputdiy from "@/views/tools/uichange/ta404ToHsa/component/input";
 import datecom from "@/views/tools/uichange/ta404ToHsa/component/datecom";
 import vuetemplate from "@/views/tools/uichange/ta404ToHsa/component/vuetemplate";
 import tablecom from "@/views/tools/uichange/ta404ToHsa/component/tablecom";
+import Home from "@/views/base/common/home";
 
 export default {
   name: "Index",
-  components:{card,selectdiy,inputdiy,datecom,vuetemplate,tablecom},
+  components:{Home, card,selectdiy,inputdiy,datecom,vuetemplate,tablecom},
   data() {
     return {
       mark:0,

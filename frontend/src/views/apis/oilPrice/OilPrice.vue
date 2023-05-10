@@ -1,5 +1,6 @@
 <template>
   <div style="float: left;text-align: left;" class="divBox">
+    <home/>
     <a-card title="今日油价" style="background-color:rgba(0,0,0,0.1);border-radius: 1rem">
       <a-select slot="extra" v-model="city" default-value="云南" style="width: 120px" @change="query" >
         <a-select-option value="湖南">湖南</a-select-option>
@@ -63,9 +64,11 @@
 <script>
 import moment from "moment";
 import {ipcApiRoute} from "@/api/main";
+import Home from "@/views/base/common/home";
 
 export default {
   name: "OilPrice",
+  components: {Home},
   data(){
     return{
       city: '云南',
