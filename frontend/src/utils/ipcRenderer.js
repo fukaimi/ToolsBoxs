@@ -22,6 +22,7 @@ const sendSync = (channel, param) => {
   return message;
 }
 
+
 export default {
   install(Vue) {
     Vue.prototype.$ipc = ipc // 全局注入ipc

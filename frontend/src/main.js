@@ -10,6 +10,10 @@ import CodeEditor from 'bin-code-editor';
 import {systemConfig} from '@/api/systemConfig'
 // markdown样式
 import "github-markdown-css";
+import "@/views/base/css/base.css"
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
+
 
 //json代码框
 Vue.use(CodeEditor);

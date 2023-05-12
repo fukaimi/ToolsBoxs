@@ -1,19 +1,21 @@
 <template>
   <div>
     <home/>
-    <a-spin :spinning="spinning">
-      <div style="text-align: left;height: 100vh">
-        <a-textarea
-          v-model="kzt"
-          class="bg"
-          placeholder=""
-          :row="10"
-          :minRows="10"
-          style="{font-size: 22px;}"
-          @change="kztChange"
-          @select="testSelect"/>
-      </div>
-    </a-spin>
+    <div class="baseHeight">
+      <a-spin :spinning="spinning">
+        <div style="text-align: left;height: 100vh">
+          <a-textarea
+            v-model="kzt"
+            class="bg"
+            placeholder=""
+            :row="10"
+            :minRows="10"
+            style="{font-size: 22px;}"
+            @change="kztChange"
+            @select="testSelect"/>
+        </div>
+      </a-spin>
+    </div>
   </div>
 </template>
 <script>
@@ -229,7 +231,7 @@ export default {
 </script>
 
 <style scoped>
-.bg{
+.bg {
   background-color: #FAFAFA;
   background-image: linear-gradient(90deg, #FAFAFA 0%, #74EBD5 44%, #9FACE6 100%);
   height: 100vh

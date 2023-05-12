@@ -57,7 +57,7 @@ module.exports = (appInfo) => {
       nodeIntegration: true,
       //preload: path.join(appInfo.baseDir, 'preload', 'bridge.js'),
     },
-    frame: true,
+    frame: false,
     show: true,
     icon: path.join(appInfo.home, 'public', 'images', 'logo-32.png'),
   };

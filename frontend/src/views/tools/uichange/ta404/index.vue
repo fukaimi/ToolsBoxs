@@ -1,187 +1,189 @@
 <template>
   <div>
     <home/>
-    <a-row style="padding-top:1rem;text-align: left;">
-      <a-col :xs="4" :sm="8" :md="10" :lg="4" :xl="2">
-        <div style="padding-left: 1rem">
-          <a-button type="primary" block class="but" @click="showModaCom(5)">
-            获取VUE模板
-          </a-button>
-          <a-button type="primary" block class="but" @click="showModal">
-            新建表单
-          </a-button>
-          <a-button type="primary" block class="but" @click="showModaCom(1)">
-            新建Card
-          </a-button>
-          <a-button type="primary" block class="but" @click="showModaCom(2)">
-            新建下拉框
-          </a-button>
-          <a-button type="primary" :mark="mark" block class="but" @click="showModaCom(3)">
-            新建输入框
-          </a-button>
-          <a-button type="primary" block class="but" @click="showModaCom(4)">
-            新建日期框
-          </a-button>
-          <a-button type="primary" block class="but" @click="showModaCom(6)">
-            新建表格
-          </a-button>
-          <a-button type="primary" block @click="showModaCom(7)">
-            生成表格列
-          </a-button>
-          <a-button type="danger" block class="but" @click="onCopy">
-            复制内容
-          </a-button>
-          <a-button type="danger" block class="but" @click="reSet">
-            清空内容
-          </a-button>
+    <div class="baseHeight">
+      <a-row style="padding-top:1rem;text-align: left;">
+        <a-col :xs="4" :sm="8" :md="10" :lg="4" :xl="2">
+          <div style="padding-left: 1rem">
+            <a-button type="primary" block class="but" @click="showModaCom(5)">
+              获取VUE模板
+            </a-button>
+            <a-button type="primary" block class="but" @click="showModal">
+              新建表单
+            </a-button>
+            <a-button type="primary" block class="but" @click="showModaCom(1)">
+              新建Card
+            </a-button>
+            <a-button type="primary" block class="but" @click="showModaCom(2)">
+              新建下拉框
+            </a-button>
+            <a-button type="primary" :mark="mark" block class="but" @click="showModaCom(3)">
+              新建输入框
+            </a-button>
+            <a-button type="primary" block class="but" @click="showModaCom(4)">
+              新建日期框
+            </a-button>
+            <a-button type="primary" block class="but" @click="showModaCom(6)">
+              新建表格
+            </a-button>
+            <a-button type="primary" block @click="showModaCom(7)">
+              生成表格列
+            </a-button>
+            <a-button type="danger" block class="but" @click="onCopy">
+              复制内容
+            </a-button>
+            <a-button type="danger" block class="but" @click="reSet">
+              清空内容
+            </a-button>
+          </div>
+        </a-col>
+
+        <a-col :xs="4" :sm="8" :md="10" :lg="4" :xl="22">
+          <a-space :span="24" style="margin-left: 5rem">
+            <a-tag color="#2db7f5">
+              列数 {{ mark }}
+            </a-tag> <a-slider v-model="mark" :marks="marks" :default-value="mark" :max="4" style="width: 35rem"/>
+          </a-space>
+
+
+          <b-code-editor
+            ref="editor"
+            v-model="jsonStr2"
+            :auto-format="true"
+            :smart-indent="true"
+            theme="idea"
+            :indent-unit="4"
+            :line-wrap="false"
+            :lint="false">
+          </b-code-editor>
+        </a-col>
+      </a-row>
+
+      <template>
+        <div>
+          <a-modal v-model="visible" title="表单填写" width="70em" @ok="handleOk">
+            <a-space>
+              <b>ref:</b>
+              <a-input
+                v-model="from.ref"
+                placeholder="请填写"
+                :max-length="25"
+                style="width: 10em"
+              />
+              <b>model:</b>
+              <a-input
+                v-model="from.model"
+                placeholder="请填写"
+                :max-length="25"
+                style="width: 10em"
+              />
+              <b>size:</b>
+              <a-select v-model="from.size" default-value="medium" style="width: 10em">
+                <a-select-option value="medium">
+                  medium(标准)
+                </a-select-option>
+                <a-select-option value="small">
+                  small(小)
+                </a-select-option>
+                <a-select-option value="mini">
+                  mini(较小)
+                </a-select-option>
+              </a-select>
+            </a-space>
+            <br/>
+            <a-space v-for="(item,index) in addItemAbs" :key="index" style="padding-top: 1em">
+              <a-tag color="#f50">
+                <span v-if="item.i === 1">文本框</span>
+                <span v-if="item.i === 2">下拉框</span>
+                <span v-if="item.i === 3">日期框</span>
+                <span v-if="item.i === 4">卡片</span>
+              </a-tag>
+              <a-tag color="#2db7f5">
+                {{ item.label }}
+              </a-tag>
+              <a-tag color="#2db7f5">
+                {{ item.prop }}
+              </a-tag>
+              <a-icon type="close-circle" @click="removeItem(index)"/>
+            </a-space>
+            <br/>
+            <a-space style="padding-top: 1em">
+              <div>
+                <a-button type="dashed" icon="add" @click="addItem(1)">
+                  增加文本框
+                </a-button>
+                <a-button type="dashed" icon="add" @click="addItem(2)">
+                  增加下拉框
+                </a-button>
+                <a-button type="dashed" icon="add" @click="addItem(3)">
+                  增加日期框
+                </a-button>
+                <a-button type="dashed" icon="add" @click="addItem(4)">
+                  增加卡片
+                </a-button>
+              </div>
+            </a-space>
+          </a-modal>
         </div>
-      </a-col>
+      </template>
 
-      <a-col :xs="4" :sm="8" :md="10" :lg="4" :xl="22">
-        <a-space :span="24" style="margin-left: 5rem">
-          <a-tag color="#2db7f5">
-            列数 {{ mark }}
-          </a-tag> <a-slider v-model="mark" :marks="marks" :default-value="mark" :max="4" style="width: 35rem"/>
-        </a-space>
+      <a-drawer
+        title="控件属性填写"
+        :closable="false"
+        :visible="visible2"
+        width="50em"
+        @close="onClose"
+      >
+        <b>名称:</b>
+        <a-input
+          v-model="addItemAb.label"
+          placeholder="请输入"
+          :max-length="25"
+          style="width: 43em;margin-top: 1em"
+        />
+        <b>ID/Key:</b>
+        <a-input
+          v-model="addItemAb.prop"
+          placeholder="请输入"
+          :max-length="25"
+          style="width: 42em;margin-top: 1em"
+        />
+        <b>rules:</b>
+        <a-input
+          v-model="addItemAb.rule"
+          placeholder="请输入"
+          :max-length="2500"
+          style="width: 44em;margin-top: 1em"
+        />
+        <b v-if="va === 2">字典码:</b>
+        <a-input
+          v-if="va === 2"
+          v-model="addItemAb.type"
+          placeholder="请输入"
+          :max-length="25"
+          style="width: 43em;margin-top: 1em"
+        />
+        <b v-if="va === 3">格式:</b>
+        <a-input
+          v-if="va === 3"
+          v-model="addItemAb.format"
+          placeholder="请输入"
+          :max-length="25"
+          style="width: 43em;margin-top: 1em"
+        />
 
+        <a-button type="primary" style="margin-top: 2em" @click="okItem">
+          确认
+        </a-button>
+      </a-drawer>
 
-        <b-code-editor
-          ref="editor"
-          v-model="jsonStr2"
-          :auto-format="true"
-          :smart-indent="true"
-          theme="idea"
-          :indent-unit="4"
-          :line-wrap="false"
-          :lint="false">
-        </b-code-editor>
-      </a-col>
-    </a-row>
-
-    <template>
-      <div>
-        <a-modal v-model="visible" title="表单填写" width="70em" @ok="handleOk">
-          <a-space>
-            <b>ref:</b>
-            <a-input
-              v-model="from.ref"
-              placeholder="请填写"
-              :max-length="25"
-              style="width: 10em"
-            />
-            <b>model:</b>
-            <a-input
-              v-model="from.model"
-              placeholder="请填写"
-              :max-length="25"
-              style="width: 10em"
-            />
-            <b>size:</b>
-            <a-select v-model="from.size" default-value="medium" style="width: 10em">
-              <a-select-option value="medium">
-                medium(标准)
-              </a-select-option>
-              <a-select-option value="small">
-                small(小)
-              </a-select-option>
-              <a-select-option value="mini">
-                mini(较小)
-              </a-select-option>
-            </a-select>
-          </a-space>
-          <br/>
-          <a-space v-for="(item,index) in addItemAbs" :key="index" style="padding-top: 1em">
-            <a-tag color="#f50">
-              <span v-if="item.i === 1">文本框</span>
-              <span v-if="item.i === 2">下拉框</span>
-              <span v-if="item.i === 3">日期框</span>
-              <span v-if="item.i === 4">卡片</span>
-            </a-tag>
-            <a-tag color="#2db7f5">
-              {{ item.label }}
-            </a-tag>
-            <a-tag color="#2db7f5">
-              {{ item.prop }}
-            </a-tag>
-            <a-icon type="close-circle" @click="removeItem(index)"/>
-          </a-space>
-          <br/>
-          <a-space style="padding-top: 1em">
-            <div>
-              <a-button type="dashed" icon="add" @click="addItem(1)">
-                增加文本框
-              </a-button>
-              <a-button type="dashed" icon="add" @click="addItem(2)">
-                增加下拉框
-              </a-button>
-              <a-button type="dashed" icon="add" @click="addItem(3)">
-                增加日期框
-              </a-button>
-              <a-button type="dashed" icon="add" @click="addItem(4)">
-                增加卡片
-              </a-button>
-            </div>
-          </a-space>
-        </a-modal>
-      </div>
-    </template>
-
-    <a-drawer
-      title="控件属性填写"
-      :closable="false"
-      :visible="visible2"
-      width="50em"
-      @close="onClose"
-    >
-      <b>名称:</b>
-      <a-input
-        v-model="addItemAb.label"
-        placeholder="请输入"
-        :max-length="25"
-        style="width: 43em;margin-top: 1em"
-      />
-      <b>ID/Key:</b>
-      <a-input
-        v-model="addItemAb.prop"
-        placeholder="请输入"
-        :max-length="25"
-        style="width: 42em;margin-top: 1em"
-      />
-      <b>rules:</b>
-      <a-input
-        v-model="addItemAb.rule"
-        placeholder="请输入"
-        :max-length="2500"
-        style="width: 44em;margin-top: 1em"
-      />
-      <b v-if="va === 2">字典码:</b>
-      <a-input
-        v-if="va === 2"
-        v-model="addItemAb.type"
-        placeholder="请输入"
-        :max-length="25"
-        style="width: 43em;margin-top: 1em"
-      />
-      <b v-if="va === 3">格式:</b>
-      <a-input
-        v-if="va === 3"
-        v-model="addItemAb.format"
-        placeholder="请输入"
-        :max-length="25"
-        style="width: 43em;margin-top: 1em"
-      />
-
-      <a-button type="primary" style="margin-top: 2em" @click="okItem">
-        确认
-      </a-button>
-    </a-drawer>
-
-    <card ref="card" @setStr="setStr"></card>
-    <selectdiy ref="selectdiy" :mark="mark" @setStr="setStr"></selectdiy>
-    <inputdiy ref="inputdiy" :mark="mark" @setStr="setStr"></inputdiy>
-    <datecom ref="datecom" :mark="mark" @setStr="setStr"></datecom>
-    <vuetemplate ref="vuetemplate" @setStr="setStr"></vuetemplate>
-    <tablecom ref="tablecom" @setStr="setStr" ></tablecom>
+      <card ref="card" @setStr="setStr"></card>
+      <selectdiy ref="selectdiy" :mark="mark" @setStr="setStr"></selectdiy>
+      <inputdiy ref="inputdiy" :mark="mark" @setStr="setStr"></inputdiy>
+      <datecom ref="datecom" :mark="mark" @setStr="setStr"></datecom>
+      <vuetemplate ref="vuetemplate" @setStr="setStr"></vuetemplate>
+      <tablecom ref="tablecom" @setStr="setStr" ></tablecom>
+    </div>
   </div>
 </template>
 

@@ -3,7 +3,10 @@
     id="app"
     ref="screen"
     :style="autoUrl">
-    <div class="divBox" style="overflow-y: auto">
+    <nav-index/>
+    <div
+      class="divBox"
+      style="overflow-y: auto;-webkit-app-region: no-drag;">
       <div style="margin-top: 10rem">
         <template>
           <div>
@@ -16,7 +19,9 @@
                 </a-card>
               </a-col>
               <a-col :span="12">
-                <a-card :bordered="false" style="background-color:rgba(0,0,0,0.2);height: 15rem;text-align: left;border-radius: 15px">
+                <a-card
+                  :bordered="false"
+                  style="background-color:rgba(0,0,0,0.2);height: 15rem;text-align: left;border-radius: 15px">
                   <a-row>
                     <a-col :span="12" style="width: 50%;font-size: 9rem;">
                       <font
@@ -55,7 +60,7 @@
                       </a-row>
                       <a-row style="color: #ffffff;">
                         <a-row><font size="2rem">历史今天: </font></a-row>
-                        <a-row v-for="(item , inde) in lishi" :key="inde">{{ item.lsdate }}  {{ item.title }}</a-row>
+                        <a-row v-for="(item , inde) in lishi" :key="inde">{{ item.lsdate }} {{ item.title }}</a-row>
                       </a-row>
 
                     </a-col>
@@ -89,7 +94,7 @@
       </div>
     </div>
     <div
-      style="background-color:rgba(0,0,0,0.5);width: 30%;height: 10%;position: absolute;right: 0;bottom: 0.5rem;border-radius: 0.4rem;color: #fff;text-align: left">
+      style="-webkit-app-region: no-drag;background-color:rgba(0,0,0,0.5);width: 30%;height: 10%;position: absolute;right: 0;bottom: 0.5rem;border-radius: 0.4rem;color: #fff;text-align: left">
       <a-tag color="#2db7f5" style="margin-left: 0.5rem">
         <a-icon type="alert"/>
         每日一言:
@@ -97,39 +102,56 @@
       {{ qinggan }}
       <a-icon type="reload" @click="qingan"/>
     </div>
-    <div style="float: right;padding-right: 1rem;padding-top: 0.5rem">
-      <a-switch v-model="checked" checked-children="自动换图开" un-checked-children="自动换图关" default-checked/>
+    <div style="float: right;padding-right: 1rem;padding-top: 1rem;-webkit-app-region: no-drag;">
+
       <!--      <a-switch v-model="checkOpen" checked-children="单窗口模式" un-checked-children="多窗口模式" default-checked/>-->
-      <a-button-group>
-        <a-button type="link" @click="add">
-          <a-icon type="left"/>
-          上一张
-        </a-button>
-        <a-button type="link" @click="ss"> 下一张
-          <a-icon type="right"/>
-        </a-button>
-        <!--a-button        <a-button-->
-        <!--          v-if="isFullscreen"-->
-        <!--          ref="qp"-->
-        <!--          ghost-->
-        <!--          icon="fullscreen"-->
-        <!--          @click="quanping">-->
-        <!--        </a-button>-->
-        <!--        <a-button-->
-        <!--          v-if="!isFullscreen"-->
-        <!--          ghost-->
-        <!--          icon="fullscreen-exit"-->
-        <!--          @click="quanping">-->
-        <!--        </a-button>-->
-      </a-button-group>
+      <!--      <a-button-group>-->
+      <a-tooltip placement="left" title="下一张" :get-popup-container="getPopupContainer">
+        <a-button type="link" icon="double-left" @click="add"/>
+      </a-tooltip>
+      <a-switch v-model="checked" checked-children="自动换图开" un-checked-children="自动换图关" default-checked/>
+      <a-tooltip placement="left" title="上一张" :get-popup-container="getPopupContainer">
+        <a-button type="link" icon="double-right" @click="ss"/>
+      </a-tooltip>
+      <!--a-button        <a-button-->
+      <!--          v-if="isFullscreen"-->
+      <!--          ref="qp"-->
+      <!--          ghost-->
+      <!--          icon="fullscreen"-->
+      <!--          @click="quanping">-->
+      <!--        </a-button>-->
+      <!--        <a-button-->
+      <!--          v-if="!isFullscreen"-->
+      <!--          ghost-->
+      <!--          icon="fullscreen-exit"-->
+      <!--          @click="quanping">-->
+      <!--        </a-button>-->
+      <!--      </a-button-group>-->
     </div>
-    <div class="power">
+    <div class="power" >
       问题反馈&nbsp; &nbsp;<a-icon type="mail"/>
       fukaimi@live.cn &nbsp; &nbsp;<a-icon type="wechat"/>
       fukaimi &nbsp; &nbsp;<a-icon type="qq"/>
       534518938
     </div>
-
+    <vue-particles
+      color="#39AFFD"
+      :particleOpacity="0.9"
+      :particlesNumber="100"
+      shapeType="circle"
+      :particleSize="4"
+      linesColor="#8DD1FE"
+      :linesWidth="1"
+      :lineLinked="true"
+      :lineOpacity="0.4"
+      :linesDistance="150"
+      :moveSpeed="3"
+      :hoverEffect="true"
+      hoverMode="grab"
+      :clickEffect="true"
+      clickMode="push"
+    >
+    </vue-particles>
   </div>
 </template>
 
@@ -139,12 +161,15 @@ import moment from "moment";
 import screenfull from "screenfull";
 import {mainMenu} from "@/config/mainMenu";
 import subMenu from "@/config/subMenu";
+import NavIndex from "@/views/base/common/navIndex";
+
 
 export default {
   name: "Index",
+  components: {NavIndex},
   data() {
     return {
-      lishi:[],
+      lishi: [],
       checkOpen: true,
       mainMenu: mainMenu,
       subMenu: subMenu,
@@ -232,7 +257,7 @@ export default {
       //   }
       // })
     },
-    initLishi(){
+    initLishi() {
       const params = {
         action: 'GET',
         data: {
@@ -260,7 +285,7 @@ export default {
       // console.log(mainMenu)
     },
     openWindow(pageName) {
-      if (pageName === 'BaseUpdaterIndex') {
+      if (pageName === 'BaseUpdaterIndex1') {
         const routeUrl = this.$router.resolve(
             {name: pageName}
         )
@@ -353,6 +378,7 @@ export default {
       clearInterval(this.intervalId) // 清除计时器
       this.intervalId = null // 设置为null
     },
+
   }
 }
 </script>

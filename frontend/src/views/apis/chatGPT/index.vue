@@ -1,38 +1,40 @@
 <template>
-  <div id="app">
+  <div>
     <home/>
-    <template>
-      <a-alert message="正在与ChatGPT对话...(推荐使用免费的ChatGPT镜像站)" type="info" close-text="关闭提示" banner/>
-    </template>
-    <span v-show="show" style="margin: 0 auto;position: absolute;z-index: 222" > <a-statistic-countdown
-      title="AI思考中"
-      :value="deadline"
-      format="mm:ss:SSS"
-      style="margin-right: 50px"
-      icon="loading"
-    />
-    </span>
-    <div id="chatBody" ref="chatBody" class="chatBody">
-      <div v-for="(item,index) in chatGpts" :key="index" class="chatBox">
-        <div v-if="item.type===0" class="chatRow">
-          <a-avatar class="chatAvatar" icon="robot"/>
-          <div class="chatMsgContent">
-            <div class="chatUsername">GhatGPT</div>
-            <div class="chatContent"> {{ item.ans }}</div>
+    <div id="app" class="baseHeight">
+      <template>
+        <a-alert message="正在与ChatGPT对话...(推荐使用免费的ChatGPT镜像站)" type="info" close-text="关闭提示" banner/>
+      </template>
+      <span v-show="show" style="margin: 0 auto;position: absolute;z-index: 222"> <a-statistic-countdown
+        title="AI思考中"
+        :value="deadline"
+        format="mm:ss:SSS"
+        style="margin-right: 50px"
+        icon="loading"
+      />
+      </span>
+      <div id="chatBody" ref="chatBody" class="chatBody">
+        <div v-for="(item,index) in chatGpts" :key="index" class="chatBox">
+          <div v-if="item.type===0" class="chatRow">
+            <a-avatar class="chatAvatar" icon="robot"/>
+            <div class="chatMsgContent">
+              <div class="chatUsername">GhatGPT</div>
+              <div class="chatContent"> {{ item.ans }}</div>
+            </div>
+          </div>
+          <div v-if="item.type===1" class="chatRow chatRowMe">
+            <div class="chatContent">{{ item.ans }}</div>
+            <a-avatar icon="reddit"/>
           </div>
         </div>
-        <div v-if="item.type===1" class="chatRow chatRowMe">
-          <div class="chatContent">{{ item.ans }}</div>
-          <a-avatar icon="reddit"/>
-        </div>
       </div>
-    </div>
-    <div class="footer">
-      <a-textarea v-model="txt" placeholder="请输入" allow-clear :rows="5">
-      </a-textarea>
-      <a-button type="dashed" style="float: right;margin-top:0.5rem" @click="get">
-        发送(Enter)
-      </a-button>
+      <div class="footer">
+        <a-textarea v-model="txt" placeholder="请输入" allow-clear :rows="5">
+        </a-textarea>
+        <a-button type="dashed" style="float: right;margin-top:0.5rem" @click="get">
+          发送(Enter)
+        </a-button>
+      </div>
     </div>
   </div>
 </template>

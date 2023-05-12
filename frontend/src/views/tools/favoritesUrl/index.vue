@@ -1,132 +1,133 @@
 <template>
-  <div class="divmain">
+  <div>
     <home/>
-    <div style="width: 1000px;height:200px;font-size: 0;">
-      <div style="width: 30%;height: 500px;overflow-y:auto">
-        <template>
-          <a-tree
-            :load-data="onLoadData"
-            :tree-data.sync="treeData"
-            :expandedKeys.sync="expandedKeys"
-            @select="selectTree">
-            <template #title="{ nid: treeKey, title,leve }">
-              <a-dropdown :trigger="['contextmenu']">
-                <span>{{ title }}</span>
-                <template #overlay>
-                  <a-menu @click="({ key: menuKey }) => onContextMenuClick(treeKey, menuKey,leve)">
-                    <a-menu-item v-if="leve < 2" key="1">
-                      <a-tag color="#87d068">
-                        <a-icon type="plus"/>
-                        新增分组
-                      </a-tag>
-                    </a-menu-item>
-                    <a-menu-item v-if="leve > 0" key="2">
-                      <a-tag color="#2db7f5">
-                        <a-icon type="edit"/>
-                        修改
-                      </a-tag>
-                    </a-menu-item>
-                    <a-menu-item v-if="leve > 0" key="3">
-                      <a-tag color="#f50">
-                        <a-icon type="close"/>
-                        删除
-                      </a-tag>
-                    </a-menu-item>
-                  </a-menu>
-                </template>
-              </a-dropdown>
+    <div class="divmain baseHeight">
+      <div style="width: 1000px;height:200px;font-size: 0;">
+        <div style="width: 30%;height: 500px;overflow-y:auto">
+          <template>
+            <a-tree
+              :load-data="onLoadData"
+              :tree-data.sync="treeData"
+              :expandedKeys.sync="expandedKeys"
+              @select="selectTree">
+              <template #title="{ nid: treeKey, title,leve }">
+                <a-dropdown :trigger="['contextmenu']">
+                  <span>{{ title }}</span>
+                  <template #overlay>
+                    <a-menu @click="({ key: menuKey }) => onContextMenuClick(treeKey, menuKey,leve)">
+                      <a-menu-item v-if="leve < 2" key="1">
+                        <a-tag color="#87d068">
+                          <a-icon type="plus"/>
+                          新增分组
+                        </a-tag>
+                      </a-menu-item>
+                      <a-menu-item v-if="leve > 0" key="2">
+                        <a-tag color="#2db7f5">
+                          <a-icon type="edit"/>
+                          修改
+                        </a-tag>
+                      </a-menu-item>
+                      <a-menu-item v-if="leve > 0" key="3">
+                        <a-tag color="#f50">
+                          <a-icon type="close"/>
+                          删除
+                        </a-tag>
+                      </a-menu-item>
+                    </a-menu>
+                  </template>
+                </a-dropdown>
+              </template>
+            </a-tree>
+          </template>
+        </div>
+        <div class="floatRight">
+          <template>
+            <a-list
+              class="demo-loadmore-list"
+              item-layout="horizontal"
+              :data-source="urlList"
+            >
+              <a-list-item slot="renderItem" slot-scope="item">
+                <a slot="actions">
+                  <a-button type="link" @click="delUrlItem(item.item_id)">
+                    删除
+                  </a-button>
+                  <a-tag color="#2db7f5" @click="onCopy(item.item_url)">
+                    复制到剪切板
+                  </a-tag>
+                  <a-tag color="#2db7f5" @click="createWindow(item.item_url)">
+                    访问
+                  </a-tag>
+                </a>
+                <a-list-item-meta
+                  :description="item.item_url"
+                >
+                  <a slot="title" href="#">{{ item.item_title }}</a>
+                  <a-avatar
+                    slot="avatar"
+                    :src="item.item_ico"
+                  />
+                </a-list-item-meta>
+              </a-list-item>
+            </a-list>
+          </template>
+
+        </div>
+      </div>
+      <a-button type="primary" shape="circle" class="floatBut" @click="showVs2">
+        +
+      </a-button>
+      <!--    添加/更新框-->
+      <template>
+        <div>
+          <a-modal v-model="visible" title="添加分组">
+            <template slot="footer">
+              <a-button key="back" type="danger" @click="handleOk">
+                保存
+              </a-button>
             </template>
-          </a-tree>
-        </template>
-      </div>
-      <div class="floatRight">
-        <template>
-          <a-list
-            class="demo-loadmore-list"
-            item-layout="horizontal"
-            :data-source="urlList"
-          >
-            <a-list-item slot="renderItem" slot-scope="item">
-              <a slot="actions">
-                <a-button type="link" @click="delUrlItem(item.item_id)">
-                  删除
-                </a-button>
-                <a-tag color="#2db7f5" @click="onCopy(item.item_url)">
-                  复制到剪切板
-                </a-tag>
-                <a-tag color="#2db7f5" @click="createWindow(item.item_url)">
-                  访问
-                </a-tag>
-              </a>
-              <a-list-item-meta
-                :description="item.item_url"
-              >
-                <a slot="title" href="#">{{ item.item_title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  :src="item.item_ico"
-                />
-              </a-list-item-meta>
-            </a-list-item>
-          </a-list>
-        </template>
+            <template>
+              <a-form-model ref="addForm">
+                <a-form-model-item has-feedback label="NID" prop="nid" disabled>
+                  <a-input v-model="addForm.nid"/>
+                </a-form-model-item>
+                <a-form-model-item has-feedback label="名称" prop="title">
+                  <a-input v-model="addForm.title"/>
+                </a-form-model-item>
+                <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
+                </a-form-model-item>
+              </a-form-model>
+            </template>
+          </a-modal>
+        </div>
+      </template>
 
-      </div>
+      <!--    添加网址-->
+      <template>
+        <div>
+          <a-modal v-model="visible2" title="添加网址" width="600px">
+            <template slot="footer">
+              <a-button key="back" type="danger" @click="handleOkItem">
+                保存
+              </a-button>
+            </template>
+            <template>
+              <a-form-model ref="addUrlForm" layout="inline">
+                <a-form-model-item>
+                  <img :src="src" height="32px" width="32px"/>
+                </a-form-model-item>
+                <a-form-model-item has-feedback label="名称" prop="item_title">
+                  <a-input v-model="addUrlForm.item_title"/>
+                </a-form-model-item>
+                <a-form-model-item has-feedback label="网址" prop="item_url">
+                  <a-input v-model="addUrlForm.item_url"/>
+                </a-form-model-item>
+              </a-form-model>
+            </template>
+          </a-modal>
+        </div>
+      </template>
     </div>
-    <a-button type="primary" shape="circle" class="floatBut" @click="showVs2">
-      +
-    </a-button>
-    <!--    添加/更新框-->
-    <template>
-      <div>
-        <a-modal v-model="visible" title="添加分组">
-          <template slot="footer">
-            <a-button key="back" type="danger" @click="handleOk">
-              保存
-            </a-button>
-          </template>
-          <template>
-            <a-form-model ref="addForm">
-              <a-form-model-item has-feedback label="NID" prop="nid" disabled>
-                <a-input v-model="addForm.nid"/>
-              </a-form-model-item>
-              <a-form-model-item has-feedback label="名称" prop="title">
-                <a-input v-model="addForm.title"/>
-              </a-form-model-item>
-              <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
-              </a-form-model-item>
-            </a-form-model>
-          </template>
-        </a-modal>
-      </div>
-    </template>
-
-    <!--    添加网址-->
-    <template>
-      <div>
-        <a-modal v-model="visible2" title="添加网址" width="600px">
-          <template slot="footer">
-            <a-button key="back" type="danger" @click="handleOkItem">
-              保存
-            </a-button>
-          </template>
-          <template>
-            <a-form-model ref="addUrlForm" layout="inline">
-              <a-form-model-item>
-                <img :src="src" height="32px" width="32px"/>
-              </a-form-model-item>
-              <a-form-model-item has-feedback label="名称" prop="item_title">
-                <a-input v-model="addUrlForm.item_title"/>
-              </a-form-model-item>
-              <a-form-model-item has-feedback label="网址" prop="item_url">
-                <a-input v-model="addUrlForm.item_url"/>
-              </a-form-model-item>
-            </a-form-model>
-          </template>
-        </a-modal>
-      </div>
-    </template>
-
   </div>
 </template>
 <script>

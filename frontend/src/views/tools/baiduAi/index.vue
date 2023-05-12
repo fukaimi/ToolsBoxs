@@ -1,8 +1,11 @@
 <template>
   <div>
     <home />
-    <iframe id="baidu" src="https://yiyan.baidu.com/" frameborder="0" ></iframe>
+    <div class="baseHeight">
+      <iframe id="baidu" src="https://yiyan.baidu.com/" frameborder="0" ></iframe>
+    </div>
   </div>
+
 </template>
 
 

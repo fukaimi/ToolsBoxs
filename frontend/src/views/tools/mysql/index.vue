@@ -1,128 +1,126 @@
 <template>
   <div>
     <home/>
-    <a-spin :spinning="spinning">
-      <div style="text-align: left">
-        <a-card title="数据源选择" :bordered="false" size="small">
-          <template>
-            <a-form-model layout="inline" :model="formsource">
-              <a-form-model-item label="源地址">
-                <a-select
-                  v-model="resourceUrl"
-                  show-search
-                  placeholder="选择一个调用地址"
-                  option-filter-prop="children"
-                  style="width: 750px"
-                  :filter-option="filterOption"
-                  @focus="handleFocus"
-                  @blur="handleBlur"
-                  @change="handleChange"
-                >
-                  <a-select-option v-for="item in resourceLis" :key="item.data_id" :value="item.data_value">
-                    <a-icon type="close-circle" @click="delData(item.data_id)"/>
-                    <a-tag color="#2db7f5">{{ item.data_desc }}</a-tag>
-                    {{ item.data_value }}
-                  </a-select-option>
-                </a-select>
-              </a-form-model-item>
-              <a-form-model-item style="float: right">
-                <a-button
-                  type="primary"
-                  html-type="submit"
-                  @click="showModal"
-                >
-                  新增
-                </a-button>
-                <a-button
-                  type="danger"
-                  @click="post"
-                >
-                  执行
-                </a-button>
-                <a-button @click="showModal2">口令</a-button>
-              </a-form-model-item>
-            </a-form-model>
-          </template>
+    <div class="baseHeight">
+      <a-spin :spinning="spinning">
+        <div style="text-align: left">
+          <a-card title="数据源选择" :bordered="false" size="small">
+            <template>
+              <a-form-model layout="inline" :model="formsource">
+                <a-form-model-item label="源地址">
+                  <a-select
+                    v-model="resourceUrl"
+                    show-search
+                    placeholder="选择一个调用地址"
+                    option-filter-prop="children"
+                    style="width: 750px"
+                    :filter-option="filterOption"
+                    @focus="handleFocus"
+                    @blur="handleBlur"
+                    @change="handleChange"
+                  >
+                    <a-select-option v-for="item in resourceLis" :key="item.data_id" :value="item.data_value">
+                      <a-icon type="close-circle" @click="delData(item.data_id)"/>
+                      <a-tag color="#2db7f5">{{ item.data_desc }}</a-tag>
+                      {{ item.data_value }}
+                    </a-select-option>
+                  </a-select>
+                </a-form-model-item>
+                <a-form-model-item style="float: right">
+                  <a-button
+                    type="primary"
+                    html-type="submit"
+                    @click="showModal"
+                  >
+                    新增
+                  </a-button>
+                  <a-button
+                    type="danger"
+                    @click="post"
+                  >
+                    执行
+                  </a-button>
+                  <a-button @click="showModal2">口令</a-button>
+                </a-form-model-item>
+              </a-form-model>
+            </template>
 
-          <!--        新增弹窗-->
+            <!--        新增弹窗-->
+            <template>
+              <div>
+                <a-modal v-model="visible" title="新增访问源">
+                  <template slot="footer">
+                    <a-button key="ok" type="danger" @click="handleOk">
+                      保存
+                    </a-button>
+                  </template>
+                  <template>
+                    <a-form-model layout="inline" :model="formInline">
+                      <a-form-model-item label="源地址">
+                        <a-input
+                          v-model="formInline.data_value"
+                          default-value="http://"
+                          placeholder="输入源地址"
+                          style="width: 350px">
+                        </a-input>
+                      </a-form-model-item>
+                      <a-form-model-item label="源名称">
+                        <a-input v-model="formInline.data_desc" placeholder="输入源名称" style="width: 350px">
+                        </a-input>
+                      </a-form-model-item>
+                    </a-form-model>
+                  </template>
+
+                </a-modal>
+              </div>
+            </template>
+          </a-card>
+          <!--口令-->
           <template>
             <div>
-              <a-modal v-model="visible" title="新增访问源">
+              <a-modal v-model="visible2" title="口令输入">
                 <template slot="footer">
-                  <a-button key="ok" type="danger" @click="handleOk">
-                    保存
+                  <a-button key="back" @click="closeModal">
+                    确认
                   </a-button>
                 </template>
-                <template>
-                  <a-form-model layout="inline" :model="formInline">
-                    <a-form-model-item label="源地址">
-                      <a-input
-                        v-model="formInline.data_value"
-                        default-value="http://"
-                        placeholder="输入源地址"
-                        style="width: 350px">
-                      </a-input>
-                    </a-form-model-item>
-                    <a-form-model-item label="源名称">
-                      <a-input v-model="formInline.data_desc" placeholder="输入源名称" style="width: 350px">
-                      </a-input>
-                    </a-form-model-item>
-                  </a-form-model>
-                </template>
-
+                <a-input
+                  v-model="token"
+                  placeholder="输输入口令"
+                />
               </a-modal>
             </div>
           </template>
-        </a-card>
-        <!--口令-->
-        <template>
-          <div>
-            <a-modal v-model="visible2" title="口令输入">
-              <template slot="footer">
-                <a-button key="back" @click="closeModal">
-                  确认
-                </a-button>
-              </template>
-              <a-input
-                v-model="token"
-                placeholder="输输入口令"
-              />
-            </a-modal>
-          </div>
-        </template>
 
-        <a-card>
-
-          <a-textarea
-            v-model="kzt"
-            placeholder=""
-            :row="10"
-            :minRows="10"
-            style="height: 200px"
-            @change="kztChange"
-            @select="testSelect"/>
-          <a-tag color="#f50">即将执行SQL:</a-tag>
-          {{ txt }}
-        </a-card>
-        <a-card>
-          <template slot="title">
-            <h3>结果集
-              <a-button key="export" type="primary" @click="exportExcel">导出当前结果集</a-button>
-            </h3>
-
-          </template>
-          <template>
-
-            <a-table :columns="columns" :data-source="data" :scroll="{ x: 1500, y: 300 }" bordered>
-              <p slot="expandedRowRender" slot-scope="record" style="margin: 0">
-                {{ record.description }}
-              </p>
-            </a-table>
-          </template>
-        </a-card>
-
-      </div>
-    </a-spin>
+          <a-card>
+            <a-textarea
+              v-model="kzt"
+              placeholder=""
+              :row="10"
+              :minRows="10"
+              style="height: 200px"
+              @change="kztChange"
+              @select="testSelect"/>
+            <a-tag color="#f50">即将执行SQL:</a-tag>
+            {{ txt }}
+          </a-card>
+          <a-card>
+            <template slot="title">
+              <h3>结果集
+                <a-button key="export" type="primary" @click="exportExcel">导出当前结果集</a-button>
+              </h3>
+            </template>
+            <template>
+              <a-table :columns="columns" :data-source="data" :scroll="{ x: 1500, y: 300 }" bordered>
+                <p slot="expandedRowRender" slot-scope="record" style="margin: 0">
+                  {{ record.description }}
+                </p>
+              </a-table>
+            </template>
+          </a-card>
+        </div>
+      </a-spin>
+    </div>
   </div>
 </template>
 <script>

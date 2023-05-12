@@ -43,6 +43,7 @@
     "patch-package": "^6.5.1",
     "vue-loader": "^17.0.1",
     "vue-markdown-loader": "^2.5.0",
+    "vue-particles": "^1.0.9",
     "vue-template-compiler": "^2.7.14"
   },
   "browserslist": [

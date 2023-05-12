@@ -1,5 +1,6 @@
 <template>
   <div>
+    <home/>
     <a-result
       status="success"
       title="Tools工具箱"
@@ -41,6 +42,11 @@
           <a-icon :style="{ color: 'green' }" type="check-circle"/>
           无法下载请访问:<a target="_blank" href="https://gitee.com/fukaimin/tools/tree/master/out">https://gitee.com/fukaimin/tools/tree/master/out</a>
         </p>
+        <p style="text-align: left">
+          <a-icon :style="{ color: 'green' }" type="check-circle"/>
+          无法下载请访问:<a target="_blank" href="https://www.123pan.com/s/Zgu0Vv-SnAod.html">网盘下载</a>
+        </p>
+
       </div>
     </a-result>
   </div>

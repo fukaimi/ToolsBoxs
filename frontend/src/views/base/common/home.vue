@@ -1,12 +1,17 @@
 <template>
-  <div style="position: absolute;z-index: 99999;bottom: 2%;right: 2%">
-    <a-button type="primary" shape="circle" icon="home" class="but" @click="black"/>
+  <div>
+    <nav-div :black="true"/>
+    <!--    <div style="position: absolute;z-index: 99999;bottom: 2%;right: 2%">-->
+    <!--      <a-button type="primary" shape="circle" icon="home" class="but" @click="black"/>-->
+    <!--    </div>-->
   </div>
 </template>
 
 <script>
+import NavDiv from "@/views/base/common/navDiv";
 export default {
   name: "Home",
+  components: {NavDiv},
   data(){
     return{
 
