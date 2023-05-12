@@ -9,6 +9,7 @@
       </a-tooltip>
     </div>
     <vue-particles
+      style="position:absolute; z-index: -1"
       color="#39AFFD"
       :particleOpacity="0.9"
       :particlesNumber="100"

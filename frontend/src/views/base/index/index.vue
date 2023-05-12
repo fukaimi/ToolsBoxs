@@ -102,12 +102,12 @@
       {{ qinggan }}
       <a-icon type="reload" @click="qingan"/>
     </div>
-    <div style="float: right;padding-right: 1rem;padding-top: 1rem;-webkit-app-region: no-drag;">
+    <div style="float: right;padding-right: 1rem;padding-top: 1.5rem;-webkit-app-region: no-drag;">
 
       <!--      <a-switch v-model="checkOpen" checked-children="单窗口模式" un-checked-children="多窗口模式" default-checked/>-->
       <!--      <a-button-group>-->
       <a-tooltip placement="left" title="下一张" :get-popup-container="getPopupContainer">
-        <a-button type="link" icon="double-left" @click="add"/>
+        <a-button type="link" size="small" icon="double-left" @click="add"/>
       </a-tooltip>
       <a-switch v-model="checked" checked-children="自动换图开" un-checked-children="自动换图关" default-checked/>
       <a-tooltip placement="left" title="上一张" :get-popup-container="getPopupContainer">

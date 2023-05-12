@@ -1,5 +1,6 @@
 # 该项目来源于 electron-egg framework 2.0
-## 🌏[中文](https://www.yuque.com/u34495/mivcfg) | [English](https://www.yuque.com/u34495/ee-doc) 
+## 🌏[中文](https://www.yuque.com/u34495/mivcfg) | [English](https://www.yuque.com/u34495/ee-doc)
+![img.png](img.png)
 ### 2023年5月10日14:57:24
 - 新增:文心一言
 - 首页改版

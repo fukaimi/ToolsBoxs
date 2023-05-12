@@ -32,19 +32,19 @@
         </p>
         <p style="text-align: left">
           <a-icon :style="{ color: 'green' }" type="check-circle"/>
-          能够正常的访问GitHub <a target="_blank" href="https://github.com/fukaimi/tools/blob/main/out/">https://github.com/fukaimi/tools/blob/main/out/ &gt;</a>
+          能够正常的访问GitHub <a @click="createWindow('https://github.com/fukaimi/tools/blob/main/out/')">https://github.com/fukaimi/tools/blob/main/out/ &gt;</a>
         </p>
         <p style="text-align: left">
           <a-icon :style="{ color: 'green' }" type="check-circle"/>
-          大陆用户访问:<a target="_blank" href="https://gitee.com/fukaimin/tools/blob/master/out">https://gitee.com/fukaimin/tools/blob/master/out</a>
+          大陆用户访问:<a @click="createWindow('https://gitee.com/fukaimin/tools/blob/master/out')">https://gitee.com/fukaimin/tools/blob/master/out</a>
         </p>
         <p style="text-align: left">
           <a-icon :style="{ color: 'green' }" type="check-circle"/>
-          无法下载请访问:<a target="_blank" href="https://gitee.com/fukaimin/tools/tree/master/out">https://gitee.com/fukaimin/tools/tree/master/out</a>
+          无法下载请访问:<a @click="createWindow('https://gitee.com/fukaimin/tools/tree/master/out')">https://gitee.com/fukaimin/tools/tree/master/out</a>
         </p>
         <p style="text-align: left">
           <a-icon :style="{ color: 'green' }" type="check-circle"/>
-          无法下载请访问:<a target="_blank" href="https://www.123pan.com/s/Zgu0Vv-SnAod.html">网盘下载</a>
+          无法下载请访问:<a @click="createWindow('https://www.123pan.com/s/Zgu0Vv-SnAod.html')">网盘下载</a>
         </p>
 
       </div>
@@ -86,6 +86,7 @@ export default {
   components: {Home},
   data() {
     return {
+      visible: false,
       status: 0, // -1:异常，1：有可用更新，2：没有可用更新，3：下载中, 4：下载完成
       progress: '',
       percentNumber: 0,
@@ -109,6 +110,11 @@ export default {
         } else {
           self.$message.info(result.desc);
         }
+      })
+    },
+    createWindow (index) {
+      this.$ipcInvoke(ipcApiRoute.createWindow, {type:'web',content:index}).then(r => {
+        console.log(r);
       })
     },
     checkForUpdater() {
