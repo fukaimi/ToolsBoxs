@@ -82,6 +82,18 @@ export default {
             pageName: 'Bulb',
             params: {}
         },
+        'menu_010':{
+            icon: 'cssgradient',
+            title: 'CSS梯度',
+            pageName:'CssGradient',
+            params:{}
+        },
+        'menu_011':{
+            icon: 'right-square',
+            title: '代码生成器',
+            pageName: 'CodeGen',
+            params:{}
+        }
     },
     base: {
         // 'menu_100' : {

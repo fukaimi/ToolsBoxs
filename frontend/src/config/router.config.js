@@ -103,6 +103,14 @@ export const constantRouterMap = [
                         path: '/tools/bulb/index',
                         name: 'Bulb',
                         component: () => import ('@/views/tools/bulb/index')
+                    }, {
+                        path: '/tools/cssgradient/index.vue',
+                        name: 'CssGradient',
+                        component: () => import ('@/views/tools/cssgradient/index.vue')
+                    }, {
+                        path: '/tools/codegen/index.vue',
+                        name: 'CodeGen',
+                        component: () => import('@/views/tools/codegen/index.vue')
                     }
                 ]
             },

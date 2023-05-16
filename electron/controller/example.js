@@ -276,23 +276,24 @@ class ExampleController extends Controller {
     /**
      * 加载扩展程序
      */
-    // async loadExtension (args) {
-    //   const crxFile = args[0];
-    //   if (_.isEmpty(crxFile)) {
-    //     return false;
-    //   }
-    //   const extensionId = path.basename(crxFile, '.crx');
-    //   const chromeExtensionDir = chromeExtension.getDirectory();
-    //   const extensionDir = path.join(chromeExtensionDir, extensionId);
+    async loadExtension (args) {
+      const crxFile = args[0];
+      if (_.isEmpty(crxFile)) {
+        return false;
+      }
+      const extensionId = path.basename(crxFile, '.crx');
+      const chromeExtensionAddon = this.app.addon.chromeExtension
+      const chromeExtensionDir = chromeExtensionAddon.getDirectory();
+      const extensionDir = path.join(chromeExtensionDir, extensionId);
 
-    //   console.log("[api] [example] [loadExtension] extension id:", extensionId);
-    //   unzip(crxFile, extensionDir).then(() => {
-    //     console.log("[api] [example] [loadExtension] unzip success!");
-    //     chromeExtension.load(extensionId);
-    //   });
+      console.log("[api] [example] [loadExtension] extension id:", extensionId);
+      // unzip(crxFile, extensionDir).then(() => {
+        console.log("[api] [example] [loadExtension] unzip success!");
+          chromeExtensionAddon.load(extensionId);
+      // });
 
-    //   return true;
-    // }
+      return true;
+    }
 
     /**
      * 创建系统通知

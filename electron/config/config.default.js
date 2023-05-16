@@ -170,15 +170,18 @@ module.exports = (appInfo) => {
       force: true,
     },
     javaServer: {
-      enable: false,
+      enable: true,
       port: 18080,
-      jreVersion: 'jre1.8.0_201',
+      jreVersion: 'jdk1.8.0_361',
       opt: '-server -Xms512M -Xmx512M -Xss512k -Dspring.profiles.active=prod -Dserver.port=${port} -Dlogging.file.path="${path}" ',
-      name: 'java-app.jar'
+      name: 'gen.jar'
     },
     example: {
       enable: true,
     },
+    chromeExtension:{
+      enable: true
+    }
   };
 
   return {

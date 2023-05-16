@@ -4,9 +4,18 @@
     ref="screen"
     :style="autoUrl">
     <nav-index/>
+    <span v-show="show" style="margin: 0 auto;position: absolute;z-index: 222"> <a-statistic-countdown
+      title="正在启动服务..."
+      :value="deadline"
+      format="mm:ss:SSS"
+      style="margin-right: 50px"
+      icon="loading"
+    />
+    </span>
     <div
       class="divBox"
       style="overflow-y: auto;-webkit-app-region: no-drag;">
+
       <div style="margin-top: 10rem">
         <template>
           <div>
@@ -93,6 +102,7 @@
         </a-card>
       </div>
     </div>
+
     <div
       style="-webkit-app-region: no-drag;background-color:rgba(0,0,0,0.5);width: 30%;height: 10%;position: absolute;right: 0;bottom: 0.5rem;border-radius: 0.4rem;color: #fff;text-align: left">
       <a-tag color="#2db7f5" style="margin-left: 0.5rem">
@@ -101,6 +111,7 @@
       </a-tag>
       {{ qinggan }}
       <a-icon type="reload" @click="qingan"/>
+      <a @click="openCrx('ctool_chrome')">加载扩展</a>
     </div>
     <div style="float: right;padding-right: 1rem;padding-top: 1.5rem;-webkit-app-region: no-drag;">
 
@@ -128,7 +139,7 @@
       <!--        </a-button>-->
       <!--      </a-button-group>-->
     </div>
-    <div class="power" >
+    <div class="power">
       问题反馈&nbsp; &nbsp;<a-icon type="mail"/>
       fukaimi@live.cn &nbsp; &nbsp;<a-icon type="wechat"/>
       fukaimi &nbsp; &nbsp;<a-icon type="qq"/>
@@ -162,6 +173,7 @@ import screenfull from "screenfull";
 import {mainMenu} from "@/config/mainMenu";
 import subMenu from "@/config/subMenu";
 import NavIndex from "@/views/base/common/navIndex";
+import storage from "store2";
 
 
 export default {
@@ -169,6 +181,8 @@ export default {
   components: {NavIndex},
   data() {
     return {
+      show: false,
+      deadline: Date.now() + 1000 * 10,//10s
       lishi: [],
       checkOpen: true,
       mainMenu: mainMenu,
@@ -257,6 +271,12 @@ export default {
       //   }
       // })
     },
+    openCrx(crxName) {
+
+      // let params = []
+      // params.push(crxName)
+      // this.$ipcInvoke(ipcApiRoute.openCrx, params).then(res => {console.log(res)})
+    },
     initLishi() {
       const params = {
         action: 'GET',
@@ -292,9 +312,7 @@ export default {
         // this.$message.success(routeUrl)
         window.open(routeUrl.href, '_blank')
       } else {
-        this.$router.push(
-            {name: pageName, params: {checkOpen: this.checkOpen}}
-        )
+          this.$router.push({name: pageName, params: {checkOpen: this.checkOpen}})
       }
     },
     quanping() {

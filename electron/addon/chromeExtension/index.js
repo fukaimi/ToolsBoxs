@@ -11,6 +11,8 @@ class ChromeExtensionAddon {
 
   constructor(app) {
     this.app = app;
+    this.cfg = app.config.addons.chromeExtension;
+    this.mainWindow = app.electron.mainWindow;
   }
 
   /**
@@ -45,7 +47,7 @@ class ChromeExtensionAddon {
       variablePath = '..'; // 打包后路径
     }
     extensionDirPath = path.join(app.getAppPath(), variablePath, "extraResources", "chromeExtension");
-  
+
     return extensionDirPath;
   }
 
@@ -56,7 +58,7 @@ class ChromeExtensionAddon {
     if (_.isEmpty(extensionId)) {
       return false
     }
-    
+
     try {
       const extensionPath = path.join(this.getDirectory(), extensionId);
       console.log('[addon:chromeExtension] extensionPath:', extensionPath);
@@ -65,10 +67,10 @@ class ChromeExtensionAddon {
       console.log('[addon:chromeExtension] load extension error extensionId:%s, errorInfo:%s', extensionId, e.toString());
       return false
     }
-  
+
     return true
   }
-  
+
   /**
    * 获取目录下所有文件夹
    */

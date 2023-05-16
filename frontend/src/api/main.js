@@ -8,6 +8,7 @@ const ipcApiRoute = {
   test: 'controller.example.test',
   messageShow: 'controller.example.messageShow',
   delWindows: 'controller.example.delWindows',
+  openCrx:'controller.example.loadExtension',
   messageShowConfirm: 'controller.example.messageShowConfirm',
   selectFolder: 'controller.example.selectFolder',
   openDirectory: 'controller.example.openDirectory',
