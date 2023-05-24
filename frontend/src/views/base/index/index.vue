@@ -111,7 +111,6 @@
       </a-tag>
       {{ qinggan }}
       <a-icon type="reload" @click="qingan"/>
-      <a @click="openCrx('ctool_chrome')">加载扩展</a>
     </div>
     <div style="float: right;padding-right: 1rem;padding-top: 1.5rem;-webkit-app-region: no-drag;">
 
@@ -258,18 +257,6 @@ export default {
           this.today = moment(this.jiejiari.date).format('DD')
         }
       })
-
-      // this.$ipcInvoke(ipcApiRoute.dataConfigOperation, params).then(res => {
-      //   if (res.result) {
-      //     let result = res.result;
-      //     this.today = result.today
-      //     this.jq = result.jq
-      //     this.nl = result.nl
-      //     this.xq = result.xq
-      //     this.gzr = result.gzr
-      //     this.nly = result.nly
-      //   }
-      // })
     },
     openCrx(crxName) {
 

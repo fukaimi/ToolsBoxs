@@ -35,6 +35,11 @@ export const constantRouterMap = [
                         component: () => import('@/views/tools/baiduAi/index')
                     },
                     {
+                        path: 'tools/aliYunAi/index',
+                        name: 'aliYunAi',
+                        component: () => import('@/views/apis/aliYunAi/index')
+                    },
+                    {
                         path: '/apis/chatGPT/index',
                         name: 'ChatGPT',
                         component: () => import('@/views/apis/chatGPT/index')

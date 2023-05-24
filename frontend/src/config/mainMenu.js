@@ -3,12 +3,13 @@ const mainMenu = [
         id: 'apis',
         name: '生活娱乐',
         icon: 'youtube',
-        param: [{
-            icon: 'slack',
-            title: '文心一言',
-            pageName: 'baiduAi',
-            params: {}
-        },
+        param: [
+            {
+                icon: 'slack',
+                title: '文心一言',
+                pageName: 'baiduAi',
+                params: {}
+            },
             {
                 icon: 'global',
                 title: '每天60S',
@@ -19,6 +20,40 @@ const mainMenu = [
                 icon: 'bar-chart',
                 title: '今日油价',
                 pageName: 'OilPrice',
+                params: {}
+            },
+            {
+                icon: 'robot',
+                title: 'ChatGPT',
+                pageName: 'ChatGPT',
+                params: {}
+            }, {
+                icon: 'robot',
+                title: 'ChatGPT镜像站',
+                pageName: 'ChatGPTMirrorImage',
+                params: {}
+            }]
+    },    {
+        id: 'ais',
+        name: 'AI',
+        icon: 'youtube',
+        param: [
+            {
+                icon: 'slack',
+                title: '文心一言(百度)',
+                pageName: 'baiduAi',
+                params: {}
+            },
+            {
+                icon: 'aliyun',
+                title: '通义千问(阿里)',
+                pageName: 'aliYunAi',
+                params: {}
+            },
+            {
+                icon: 'slack',
+                title: '讯飞星火(阿里)',
+                pageName: 'xunFeiAi',
                 params: {}
             },
             {
@@ -45,7 +80,7 @@ const mainMenu = [
             },
             {
                 icon: 'right-square',
-                title: '代码生成器(内网支持/网外联系作者获取)',
+                title: '代码生成器',
                 pageName: 'CodeGen',
                 params: {}
             },

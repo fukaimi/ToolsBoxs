@@ -170,7 +170,7 @@ module.exports = (appInfo) => {
       force: true,
     },
     javaServer: {
-      enable: true,
+      enable: false,
       port: 18080,
       jreVersion: 'jdk1.8.0_361',
       opt: '-server -Xms512M -Xmx512M -Xss512k -Dspring.profiles.active=prod -Dserver.port=${port} -Dlogging.file.path="${path}" ',
@@ -178,9 +178,6 @@ module.exports = (appInfo) => {
     },
     example: {
       enable: true,
-    },
-    chromeExtension:{
-      enable: true
     }
   };
 
