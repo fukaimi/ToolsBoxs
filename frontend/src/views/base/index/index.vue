@@ -67,9 +67,11 @@
                       <a-row v-if="jiejiari.rest" style="color: #ffffff;">
                         <font size="3rem">拼假建议: {{ jiejiari.rest }}</font>
                       </a-row>
-                      <a-row style="color: #ffffff;">
-                        <a-row><font size="2rem">历史今天: </font></a-row>
-                        <a-row v-for="(item , inde) in lishi" :key="inde">{{ item.lsdate }} {{ item.title }}</a-row>
+                      <a-row style="color: #ffffff;padding-top: 0.2rem">
+                        <a-row><font size="2rem">历史今天: </font><a-tag size="small" color="#2db7f5" @click="showModal">
+                          查看
+                        </a-tag></a-row>
+
                       </a-row>
 
                     </a-col>
@@ -138,6 +140,17 @@
       <!--        </a-button>-->
       <!--      </a-button-group>-->
     </div>
+
+    <a-modal
+      title="历史上的今天"
+      :visible="visible"
+      :confirm-loading="confirmLoading"
+      @ok="handleOk"
+      @cancel="handleCancel"
+    >
+      <a-row v-for="(item , inde) in lishi" :key="inde">{{ item.lsdate }} {{ item.title }}</a-row>
+    </a-modal>
+
     <div class="power">
       问题反馈&nbsp; &nbsp;<a-icon type="mail"/>
       fukaimi@live.cn &nbsp; &nbsp;<a-icon type="wechat"/>
@@ -152,7 +165,7 @@
       :particleSize="4"
       linesColor="#8DD1FE"
       :linesWidth="1"
-      :lineLinked="true"
+      :lineLinked="false"
       :lineOpacity="0.4"
       :linesDistance="150"
       :moveSpeed="3"
@@ -180,6 +193,8 @@ export default {
   components: {NavIndex},
   data() {
     return {
+      visible: false,
+      confirmLoading: false,
       show: false,
       deadline: Date.now() + 1000 * 10,//10s
       lishi: [],
@@ -257,6 +272,21 @@ export default {
           this.today = moment(this.jiejiari.date).format('DD')
         }
       })
+    },
+    showModal() {
+      this.visible = true;
+    },
+    handleOk(e) {
+      this.ModalText = 'The modal will be closed after two seconds';
+      this.confirmLoading = true;
+      setTimeout(() => {
+        this.visible = false;
+        this.confirmLoading = false;
+      }, 1000);
+    },
+    handleCancel(e) {
+      console.log('Clicked cancel button');
+      this.visible = false;
     },
     openCrx(crxName) {
 
