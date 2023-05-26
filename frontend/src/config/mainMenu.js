@@ -5,12 +5,6 @@ const mainMenu = [
         icon: 'youtube',
         param: [
             {
-                icon: 'slack',
-                title: '文心一言',
-                pageName: 'baiduAi',
-                params: {}
-            },
-            {
                 icon: 'global',
                 title: '每天60S',
                 pageName: 'Day60S',
@@ -20,17 +14,6 @@ const mainMenu = [
                 icon: 'bar-chart',
                 title: '今日油价',
                 pageName: 'OilPrice',
-                params: {}
-            },
-            {
-                icon: 'robot',
-                title: 'ChatGPT',
-                pageName: 'ChatGPT',
-                params: {}
-            }, {
-                icon: 'robot',
-                title: 'ChatGPT镜像站',
-                pageName: 'ChatGPTMirrorImage',
                 params: {}
             }]
     },    {
@@ -52,7 +35,7 @@ const mainMenu = [
             },
             {
                 icon: 'slack',
-                title: '讯飞星火(阿里)',
+                title: '讯飞星火',
                 pageName: 'xunFeiAi',
                 params: {}
             },

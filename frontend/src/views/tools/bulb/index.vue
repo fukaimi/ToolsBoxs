@@ -1,6 +1,11 @@
 <template>
   <div>
     <home/>
+    <div style="position: absolute;z-index: 9;right: 0.2rem;top:2rem;height: 50vh">
+      <a-icon type="zoom-in" />
+      <a-slider v-model="fontSize" vertical :default-value="fontSize" :tooltip-visible="true" />
+      <a-icon type="zoom-out" />
+    </div>
     <div class="baseHeight">
       <a-spin :spinning="spinning">
         <div style="text-align: left;height: 100vh">
@@ -10,7 +15,7 @@
             placeholder=""
             :row="10"
             :minRows="10"
-            style="{font-size: 22px;}"
+            :style="{'font-size': fontSize + 'px'}"
             @change="kztChange"
             @select="testSelect"/>
         </div>
@@ -26,6 +31,7 @@ export default {
   components: {Home},
   data() {
     return {
+      fontSize: 22,
       spinning: false,
       formsource: {},
       visible2: false,
