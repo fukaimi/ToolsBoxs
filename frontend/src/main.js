@@ -12,6 +12,19 @@ import {systemConfig} from '@/api/systemConfig'
 import "github-markdown-css";
 import "@/views/base/css/base.css"
 import VueParticles from 'vue-particles'
+import SocketIO from "vue-socket.io";
+import ClientSocketIO from "socket.io-client";
+Vue.use(
+    new SocketIO({
+      debug: false,//开启调试模式
+      connection: ClientSocketIO.connect(systemConfig.webSocketUrl, {
+        transports: ["websocket"],//默认使用的请求方式
+        autoConnect: false,//是否自动连接
+      }),
+    })
+);
+
+
 Vue.use(VueParticles)
 
 

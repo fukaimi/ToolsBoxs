@@ -33,12 +33,12 @@ const mainMenu = [
                 pageName: 'aliYunAi',
                 params: {}
             },
-            {
-                icon: 'slack',
-                title: '讯飞星火',
-                pageName: 'xunFeiAi',
-                params: {}
-            },
+            // {
+            //     icon: 'slack',
+            //     title: '讯飞星火',
+            //     pageName: 'xunFeiAi',
+            //     params: {}
+            // },
             {
                 icon: 'robot',
                 title: 'ChatGPT',

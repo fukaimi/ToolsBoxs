@@ -2,7 +2,7 @@
  * 基础路由
  * @type { *[] }
  */
-import {AppSider, Menu, Music} from '@/layouts'
+import {AppSider,Hotel, Menu, Music} from '@/layouts'
 
 const RouteView = {
     name: 'RouteView',
@@ -10,13 +10,35 @@ const RouteView = {
 }
 
 export const constantRouterMap = [
+    // {
+    //     path: '/',
+    //     name: 'index',
+    //     meta: {
+    //         keepAlive: true, //添加这个作为标志符，表明该页面需要保留状态
+    //     },
+    //     // component: () => import('@/views/base/index/index.vue')
+    //     component: () => import('@/views/hotel/index/index.vue')
+    // },
     {
         path: '/',
-        name: 'index',
-        meta: {
-            keepAlive: true, //添加这个作为标志符，表明该页面需要保留状态
-        },
-        component: () => import('@/views/base/index/index.vue')
+        component: Hotel,
+        children: [
+            {
+                path: '/hotel/index/index',
+                name: 'HotelIndex',
+                component:()=>import('@/views/hotel/index/index.vue')
+            },
+            {
+                path: '/hotel/room/index',
+                name: 'RoomManage',
+                component:()=>import('@/views/hotel/room/index.vue')
+            },
+            {
+                path: '/hotel/room/useRoom',
+                name: 'UseRoom',
+                component:()=>import('@/views/hotel/room/useRoom.vue')
+            }
+        ]
     },
     {
         path: '/appSider',

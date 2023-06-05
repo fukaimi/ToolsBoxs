@@ -6,6 +6,9 @@ const systemConfig = {
     everyDay60s: 'https://api.qqsuu.cn/api/dm-60s',
     oilprice:'https://api.qqsuu.cn/api/dm-oilprice',
     jiejiari: 'https://api.qqsuu.cn/api/dm-jiejiari',
-    lish:'https://api.qqsuu.cn/api/dm-lishi'//
+    lish:'https://api.qqsuu.cn/api/dm-lishi',//历史
+    webSocketUrl:'ws://localhost:8888/hotel/websocket/',
+    hotelUrl:'http://localhost:8888/hotel/',
+    hotelID:'97dce59722ead87b30203c294ebd3790'
 }
 export { systemConfig }
