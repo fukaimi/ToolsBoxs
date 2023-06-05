@@ -279,7 +279,7 @@ function getIdCard(address, birthday) {
     if (!address) {
         address = "532326"; // 住址
     }
-    if (birthday) {
+    if (!birthday) {
         birthday = "19930319"; // 生日
     }
     var s = Math.floor(Math.random() * 10).toString() + Math.floor(Math.random() * 10).toString() + Math.floor(Math.random() * 10).toString();
