@@ -10,17 +10,17 @@ const RouteView = {
 }
 
 export const constantRouterMap = [
-    // {
-    //     path: '/',
-    //     name: 'index',
-    //     meta: {
-    //         keepAlive: true, //添加这个作为标志符，表明该页面需要保留状态
-    //     },
-    //     // component: () => import('@/views/base/index/index.vue')
-    //     component: () => import('@/views/hotel/index/index.vue')
-    // },
     {
         path: '/',
+        name: 'index',
+        meta: {
+            keepAlive: true, //添加这个作为标志符，表明该页面需要保留状态
+        },
+        component: () => import('@/views/base/index/index.vue')
+        // component: () => import('@/views/hotel/index/index.vue')
+    },
+    {
+        path: '/Hotel',
         component: Hotel,
         children: [
             {
