@@ -1,7 +1,7 @@
 <template>
   <div>
     <home/>
-    <div class="baseHeight">
+    <div class="baseHeight" style="">
       <a-spin :spinning="spinning">
         <div style="text-align: left">
           <a-card title="数据源选择" :bordered="false" size="small">
@@ -93,16 +93,35 @@
           </template>
 
           <a-card>
-            <a-textarea
-              v-model="kzt"
-              placeholder=""
-              :row="10"
-              :minRows="10"
-              style="height: 200px"
-              @change="kztChange"
-              @select="testSelect"/>
-            <a-tag color="#f50">即将执行SQL:</a-tag>
-            {{ txt }}
+            <a-row>
+              <a-col :span="23">
+                <a-slider v-model="inputValue" :min="1" :max="3" :step="0.01" />
+                <a-textarea
+                  v-model="kzt"
+                  class="textarea"
+                  placeholder=""
+                  :row="10"
+                  :minRows="10"
+                  :style="{height: step + 'px', 'font-size': + inputValue + 'rem' }"
+                  @change="kztChange"
+                  @select="testSelect"/>
+              </a-col>
+              <a-col :span="1">
+                <a-slider
+                  v-model="step"
+                  :min="200"
+                  :max="step + 10"
+                  vertical
+                  :style="{height: step + 'px'}"
+                  :reverse="true"/>
+              </a-col>
+            </a-row>
+            <a-row>
+              <a-tag color="#f50">即将执行SQL:</a-tag>
+              {{ txt }}
+            </a-row>
+
+
           </a-card>
           <a-card>
             <template slot="title">
@@ -154,6 +173,8 @@ export default {
   components: {Home},
   data() {
     return {
+      inputValue: 1,
+      step: 200,
       spinning: false,
       formsource: {},
       visible2: false,
@@ -388,5 +409,11 @@ export default {
 </script>
 
 <style>
-
+.textarea {
+  background: black;
+  color: #009c50;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  font-family: 幼圆;
+}
 </style>
