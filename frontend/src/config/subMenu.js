@@ -93,6 +93,12 @@ export default {
             title: '代码生成器',
             pageName: 'CodeGen',
             params:{}
+        },
+        'menu_012':{
+            icon: 'qrcode',
+            title: '二维码生成',
+            pageName: 'QRCode',
+            params:{}
         }
     },
     base: {

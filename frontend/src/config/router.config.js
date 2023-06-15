@@ -138,6 +138,10 @@ export const constantRouterMap = [
                         path: '/tools/codegen/index.vue',
                         name: 'CodeGen',
                         component: () => import('@/views/tools/codegen/index.vue')
+                    },{
+                        path: '/tools/qrcode/index.vue',
+                        name: 'QRCode',
+                        component:() => import('@/views/tools/qrcode/index.vue')
                     }
                 ]
             },

@@ -16,7 +16,7 @@ const mainMenu = [
                 pageName: 'OilPrice',
                 params: {}
             }]
-    },    {
+    }, {
         id: 'ais',
         name: 'AI',
         icon: 'youtube',
@@ -113,6 +113,12 @@ const mainMenu = [
                 icon: 'build',
                 title: 'CSS梯度',
                 pageName: 'CssGradient',
+                params: {}
+            },
+            {
+                icon: 'qrcode',
+                title: '二维码生成',
+                pageName: 'QRCode',
                 params: {}
             },
             {
