@@ -231,6 +231,7 @@ export default {
         let ressource = eval('(' + res.result[0].alldata + ')')
         this.resourceUrl = ressource.resourceUrl
         this.kzt = ressource.kzt
+        this.token = ressource.token
         this.isUpdate = true
         self.$message.success(`完成`);
       })
@@ -241,7 +242,7 @@ export default {
       let info = {
         scene: "mysqlTool",
         memo: 'mysql终端',
-        alldata: JSON.stringify({kzt: kzt, resourceUrl: resourceUrl})
+        alldata: JSON.stringify({kzt: kzt, resourceUrl: resourceUrl, token : this.token})
       }
       if (this.isUpdate) {//更新
         const params = {
@@ -313,6 +314,7 @@ export default {
     closeModal() {
       this.visible2 = false;
       this.visible = false;
+      this.kztChange()
     },
     showModal2() {
       this.visible2 = true;
