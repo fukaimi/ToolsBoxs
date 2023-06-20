@@ -126,7 +126,13 @@ const mainMenu = [
                 title: '屏幕信息',
                 pageName: 'BaseScreenIndex',
                 params: {}
-            }]
+            },{
+                icon: 'api',
+                title: '接口压力测试',
+                pageName: 'MultiTask',
+                params: {}
+            }
+        ]
     }, {
         id: 'tools',
         name: '关于',

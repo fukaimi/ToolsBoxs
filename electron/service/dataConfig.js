@@ -298,7 +298,7 @@ class DataConfigService extends Service {
    * 发起一个网络请求
    */
   async get(param) {
-    console.log("GET发起请求:" + param)
+    console.log("GET REQ:" + param)
     try {
       const headersObj = {
         'Content-Type': 'application/json',
@@ -313,7 +313,7 @@ class DataConfigService extends Service {
         timeout: 100000,
       });
       const result = response.data;
-      console.log("GET请求应答:" + JSON.stringify(result))
+      console.log("GET REP:" + JSON.stringify(result))
       return result
     }catch (e) {
       return e

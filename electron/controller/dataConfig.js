@@ -101,7 +101,7 @@ class DataConfigController extends Controller {
                 data.result = await service.dataConfig.getSceneTemp(paramsObj.info.scene)
                 break;
         }
-        console.log('data 出参:', data);
+        console.log('data out:', data);
         return data;
     }
 

@@ -142,6 +142,10 @@ export const constantRouterMap = [
                         path: '/tools/qrcode/index.vue',
                         name: 'QRCode',
                         component:() => import('@/views/tools/qrcode/index.vue')
+                    },{
+                        path: '/tools/multitask/index.vue',
+                        name: 'MultiTask',
+                        component:() => import('@/views/tools/multitask/index.vue')
                     }
                 ]
             },
