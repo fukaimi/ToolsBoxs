@@ -13,7 +13,7 @@
                 GET
               </a-select-option>
             </a-select>
-            <a-input v-model="url" style="width: 80%" default-value="输入接口地址" />
+            <a-input v-model="url" style="width: 80%" placeholder="测试接口地址" />
           </a-input-group>
         </a-col>
         <a-col :span="6">
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import concurrencyRequest from '@/views/tools/multitask/concurrencyRequest'
+import concurrencyRequest from '@/api/concurrencyRequest'
 import Home from "@/views/base/common/home";
 export default {
   name: "Index",
@@ -49,7 +49,7 @@ export default {
     return{
       runTaskNums: 3,
       reqMe: 'POST',
-      url:'http://bi.blockwarden.cn/api/test/list',
+      url:'',
       inData:'[ { "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" },{ "depCity": "SZX", "arrCity": "BJS", "num": 0,"date": "20230630" }]',
       outData:''
     }
