@@ -32,7 +32,7 @@
           </template>
           <a-button type="link">{{ week }}</a-button>
         </a-popover>
-
+        <a-switch :default-checked="false" checked-children="暗" un-checked-children="亮" class="noDrg" size="small" />
         <a @click="delWin('window-min')"><a-icon type="minus-circle" class="min noDrg" /></a>
         <a @click="delWin('window-max')"><a-icon type="plus-circle" class="max noDrg"/></a>
         <a @click="delWin('window-close')"><a-icon type="close-circle" class="close noDrg"/></a>
