@@ -1,6 +1,12 @@
 # 该项目来源于 electron-egg framework 2.0
 ## 🌏[中文](https://www.yuque.com/u34495/mivcfg) | [English](https://www.yuque.com/u34495/ee-doc)
 ![img.png](img.png)
+### 2023年6月28日11:19:18
+- 新增:接口压力测试
+- 新增:MybatisLog解析
+- 新增:文本生成二维码
+- 调整:MySQL终端增加字体和输入框调整选项
+
 ### 2023年5月10日14:57:24
 - 新增:文心一言
 - 首页改版

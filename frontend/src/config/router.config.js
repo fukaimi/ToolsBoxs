@@ -2,7 +2,7 @@
  * 基础路由
  * @type { *[] }
  */
-import {AppSider,Hotel, Menu, Music} from '@/layouts'
+import {AppSider, Hotel, Menu, Music} from '@/layouts'
 
 const RouteView = {
     name: 'RouteView',
@@ -26,17 +26,17 @@ export const constantRouterMap = [
             {
                 path: '/hotel/index/index',
                 name: 'HotelIndex',
-                component:()=>import('@/views/hotel/index/index.vue')
+                component: () => import('@/views/hotel/index/index.vue')
             },
             {
                 path: '/hotel/room/index',
                 name: 'RoomManage',
-                component:()=>import('@/views/hotel/room/index.vue')
+                component: () => import('@/views/hotel/room/index.vue')
             },
             {
                 path: '/hotel/room/useRoom',
                 name: 'UseRoom',
-                component:()=>import('@/views/hotel/room/useRoom.vue')
+                component: () => import('@/views/hotel/room/useRoom.vue')
             }
         ]
     },
@@ -138,14 +138,18 @@ export const constantRouterMap = [
                         path: '/tools/codegen/index.vue',
                         name: 'CodeGen',
                         component: () => import('@/views/tools/codegen/index.vue')
-                    },{
+                    }, {
                         path: '/tools/qrcode/index.vue',
                         name: 'QRCode',
-                        component:() => import('@/views/tools/qrcode/index.vue')
-                    },{
+                        component: () => import('@/views/tools/qrcode/index.vue')
+                    }, {
                         path: '/tools/multitask/index.vue',
                         name: 'MultiTask',
-                        component:() => import('@/views/tools/multitask/index.vue')
+                        component: () => import('@/views/tools/multitask/index.vue')
+                    }, {
+                        path: '/tools/mybatisLog/mybatisSql.vue',
+                        name: 'MybatisSql',
+                        component: () => import('@/views/tools/mybatisLog/mybatisSql.vue')
                     }
                 ]
             },

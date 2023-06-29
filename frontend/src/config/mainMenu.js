@@ -126,10 +126,15 @@ const mainMenu = [
                 title: '屏幕信息',
                 pageName: 'BaseScreenIndex',
                 params: {}
-            },{
+            }, {
                 icon: 'api',
                 title: '接口压力测试',
                 pageName: 'MultiTask',
+                params: {}
+            }, {
+                icon: 'cluster',
+                title: 'MyBatis SQL 解析',
+                pageName: 'MybatisSql',
                 params: {}
             }
         ]
