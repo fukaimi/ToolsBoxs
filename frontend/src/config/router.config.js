@@ -16,8 +16,9 @@ export const constantRouterMap = [
         meta: {
             keepAlive: true, //添加这个作为标志符，表明该页面需要保留状态
         },
-        component: () => import('@/views/base/index/index.vue')
+        // component: () => import('@/views/base/index/index.vue')
         // component: () => import('@/views/hotel/index/index.vue')
+        component: ()=>import('@/views/tools/cids/cids.vue')
     },
     {
         path: '/Hotel',
@@ -150,6 +151,10 @@ export const constantRouterMap = [
                         path: '/tools/mybatisLog/mybatisSql.vue',
                         name: 'MybatisSql',
                         component: () => import('@/views/tools/mybatisLog/mybatisSql.vue')
+                    },{
+                        path: '/tools/autoRunApi/autoRunApi.vue',
+                        name: 'AutoRunApi',
+                        component:()=>import('@/views/tools/autoRunApi/autoRunApi.vue')
                     }
                 ]
             },

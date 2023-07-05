@@ -136,6 +136,11 @@ const mainMenu = [
                 title: 'MyBatis SQL 解析',
                 pageName: 'MybatisSql',
                 params: {}
+            },{
+                icon: 'thunderbolt',
+                title: 'Api接口自动化测试',
+                pageName: 'AutoRunApi',
+                params: {}
             }
         ]
     }, {
