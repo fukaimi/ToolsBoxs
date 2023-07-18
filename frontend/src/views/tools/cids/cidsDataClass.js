@@ -1,0 +1,4 @@
+class CidsDataClass{
+    constructor() {
+    }
+}

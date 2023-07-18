@@ -143,6 +143,18 @@ const mainMenu = [
                 params: {}
             }
         ]
+    },{
+        id: 'otherTools',
+        name: '其他工具',
+        icon: 'control',
+        param: [
+            {
+                icon: 'database',
+                title: '数据补推',
+                pageName: 'Cids',
+                params: {}
+            }
+        ]
     }, {
         id: 'tools',
         name: '关于',

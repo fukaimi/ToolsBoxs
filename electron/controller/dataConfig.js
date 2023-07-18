@@ -50,6 +50,17 @@ class DataConfigController extends Controller {
         return result;
     }
 
+    async requestService(args){
+        const {service} = this;
+        const paramsObj = args;
+        console.log('网络请求入参 paramsObj:', paramsObj);
+        const result = {
+            res:null
+        }
+        result.res = await service.dataConfig.requestService(paramsObj)
+        return result
+    }
+
     /**
      * sqlite数据库操作
      */
@@ -100,6 +111,15 @@ class DataConfigController extends Controller {
             case 'getSceneTemp':
                 data.result = await service.dataConfig.getSceneTemp(paramsObj.info.scene)
                 break;
+            case 'addTask':
+                data.result = await service.dataConfig.addTask(paramsObj.data)
+                break;
+            case 'getAllTask':
+                data.result = await service.dataConfig.getAllTask()
+                break;
+            case 'delTask':
+                data.result = await service.dataConfig.delTask(paramsObj.data.TASK_ROOT_ID)
+                break
         }
         console.log('data out:', data);
         return data;

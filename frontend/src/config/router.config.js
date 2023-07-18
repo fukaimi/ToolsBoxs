@@ -18,7 +18,7 @@ export const constantRouterMap = [
         },
         // component: () => import('@/views/base/index/index.vue')
         // component: () => import('@/views/hotel/index/index.vue')
-        component: ()=>import('@/views/tools/cids/cids.vue')
+        component: ()=>import('@/views/tools/cids/cids-web.vue')
     },
     {
         path: '/Hotel',
@@ -155,6 +155,10 @@ export const constantRouterMap = [
                         path: '/tools/autoRunApi/autoRunApi.vue',
                         name: 'AutoRunApi',
                         component:()=>import('@/views/tools/autoRunApi/autoRunApi.vue')
+                    },{
+                        path: '/tools/cids/cids.vue',
+                        name: 'Cids',
+                        component:()=>import('@/views/tools/cids/cids.vue')
                     }
                 ]
             },
