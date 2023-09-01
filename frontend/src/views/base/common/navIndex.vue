@@ -4,6 +4,7 @@
       <a @click="delWin('window-min')"><a-icon type="minus-circle" class="min" /></a>
       <a @click="delWin('window-max')"><a-icon type="plus-circle" class="max"/></a>
       <a @click="delWin('window-close')"><a-icon type="close-circle" class="close"/></a>
+
     </div>
   </div>
 </template>

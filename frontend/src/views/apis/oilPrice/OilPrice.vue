@@ -112,6 +112,7 @@ export default {
         action: 'GET',
         data: {
           url: this.systemConfig.oilprice,
+          apiKey:'cc345403efd9c17363b1456276abc112',
           prov: this.city
         }
       }

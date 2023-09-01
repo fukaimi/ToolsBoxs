@@ -263,6 +263,7 @@ export default {
         action: 'GET',
         data: {
           date: moment(new Date()).format('YYYY-MM-DD'),
+          apiKey:'0c1fcc7b0291e46a124430424044a3e5',
           url: this.systemConfig.jiejiari
         }
       }
@@ -299,6 +300,7 @@ export default {
         action: 'GET',
         data: {
           date: moment(new Date()).format('MMDD'),
+          apiKey: 'a782b130d599abf626ea3e59ba1af772',
           url: this.systemConfig.lish
         }
       }
